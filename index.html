@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="pages/index.css">
+	<title>Mesto</title>
+</head>
+<body class="root">
+	<div class="page">
+		<header class="header">
+			<a class="header__logo link" href="#" target="_blank">
+				<img class="header__image" src="images/svg/logo.svg" alt="Россия" />
+			</a>
+			<span class="header__line"></span>
+		</header>
+		<main class="content">
+			<section class="profile">
+				<div class="profile__info">
+					<img class="profile__avatar" src="images/image.jpg" alt="Изображение пользователя">
+					<div class="profile__wrap">
+						<div class="profile__inner">
+							<h1 class="profile__avatar-name reset">
+								Жак-Ив Кусто
+							</h1>
+							<button class="profile__btn btn"></button>
+						</div>
+						<p class="profile__avatar-description reset">
+							Исследователь океана
+						</p>
+					</div>
+					<dialog class="modal">
+						<button class="modal__btn-close btn"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+							<path d="M32 28.8L19.2 16L32 3.2L28.8 0L16 12.8L3.2 0L0 3.2L12.8 16L0 28.8L3.2 32L16 19.2L28.8 32L32 28.8Z" fill="white"/>
+						</svg></button>
+						<h1 class="modal__title reset">Редактировать профиль</h1>
+						<form class="modal__form" autocomplete="off">
+							<label for="name"></label>
+							<input class="modal__input" id="name"  type="text"/>
+							<label for="description"></label>
+							<input class="modal__input" id="description" type="text"/>
+							<button class="modal__btn btn">Сохранить</button>
+						</form>
+					</dialog>
+				</div>
+				<button class="profile__button btn"></button>
+			</section>
+			<section class="pictures">
+				<div class="picture">
+					<div class="picture__card">
+						<img class="picture__card-img" src="images/img-2.jpg" alt="Карачаевск" />
+						<div class="picture__card-body">
+							<h2 class="picture__card-title reset">Карачаевск</h2>
+							<button class="picture__card-btn btn"></button>
+						</div>
+					</div>
+					<div class="picture__card">
+						<img class="picture__card-img" src="images/img-3.jpg" alt="Гора Эльбрус" />
+						<div class="picture__card-body">
+							<h2 class="picture__card-title reset">Гора Эльбрус</h2>
+							<button class="picture__card-btn btn"></button>
+						</div>
+					</div>
+					<div class="picture__card">
+						<img class="picture__card-img" src="images/img-1.jpg" alt="Домбай" />
+						<div class="picture__card-body">
+							<h2 class="picture__card-title reset">Домбай</h2>
+							<button class="picture__card-btn btn"></button>
+						</div>
+					</div>
+					<div class="picture__card">
+						<img class="picture__card-img" src="images/img-3.jpg" alt="Гора Эльбрус" />
+						<div class="picture__card-body">
+							<h2 class="picture__card-title reset">Гора Эльбрус</h2>
+							<button class="picture__card-btn btn"></button>
+						</div>
+					</div>
+					<div class="picture__card">
+						<img class="picture__card-img" src="images/img-1.jpg" alt="Домбай" />
+						<div class="picture__card-body">
+							<h2 class="picture__card-title reset">Домбай</h2>
+							<button class="picture__card-btn btn"></button>
+						</div>
+					</div>
+					<div class="picture__card">
+						<img class="picture__card-img" src="images/img-2.jpg" alt="Карачаево-Черкесия" />
+						<div class="picture__card-body">
+							<h2 class="picture__card-title reset">Карачаево-Черкесия</h2>
+							<button class="picture__card-btn btn"></button>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+		<footer class="footer">
+			<p class="footer__copyright reset">&copy;&nbsp;2020 Mesto Russia</p>
+		</footer>
+	</div>
+</body>
+</html>

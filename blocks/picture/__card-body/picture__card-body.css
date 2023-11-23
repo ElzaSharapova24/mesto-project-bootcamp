@@ -1,0 +1,12 @@
+.picture__card-body {
+  padding-top: 25px;
+  padding-left: 21px;
+  padding-right: 20px;
+  padding-bottom: 26px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: currentColor;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}

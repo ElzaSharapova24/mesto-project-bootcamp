@@ -1,0 +1,30 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  row-gap: 40px;
+  max-width: 1280px;
+  margin: 0 auto;
+  font-family: "Inter", Arial, Helvetica,  sans-serif;
+  box-sizing: border-box;
+  color: #fff;
+  padding-left: 200px;
+  padding-right: 200px;
+}
+@media (max-width: 1024px) {
+    .page {
+        padding-left: 150px;
+        padding-right: 150px;
+      }
+}
+@media (max-width: 960px) {
+    .page {
+        padding-left: 30px;
+        padding-right: 30px;
+      }
+}
+@media (max-width: 720px) {
+    .page {
+        padding-left: 19px;
+        padding-right: 19px;
+      }
+}

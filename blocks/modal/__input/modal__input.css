@@ -1,0 +1,10 @@
+.modal__input {
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  border-radius: 0;
+  background-color: #fff;
+  outline: none;
+  border-bottom: 1px solid #000;
+  opacity: 0.2;
+}

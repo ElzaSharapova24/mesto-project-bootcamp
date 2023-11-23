@@ -1,0 +1,13 @@
+.profile__button {
+  width: 22px;
+  height: 22px;
+  background: url(../../../images/svg/plus.svg) center no-repeat;
+  border: 2px solid #ffffff;
+  padding: 20px 74px;
+}
+@media (max-width: 720px) {
+    .profile__button  {
+        max-width: 100%;
+        width: 100%;
+      }
+}

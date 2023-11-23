@@ -1,0 +1,10 @@
+.profile__btn {
+  width: 24px;
+  height: 24px;
+  background: url(../../../images/svg/editButton.svg) center no-repeat;
+}
+@media (max-width: 720px) {
+    .profile__btn  {
+        background-size: 18px 18px;
+      }
+}

@@ -1,0 +1,17 @@
+.modal {
+  max-width: 100%;
+  position: absolute;
+  top: 16%;
+  left: 0;
+  display: block;
+  border: 0;
+  box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.15);
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  width: 360px;
+  padding: 36px;
+}
+.modal::backdrop {
+  opacity: 0.5;
+  background: #000;
+}
