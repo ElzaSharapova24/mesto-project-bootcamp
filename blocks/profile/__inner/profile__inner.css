@@ -5,7 +5,7 @@
 }
 
 @media (max-width: 720px) {
-  .profile__inner  {
-   position: relative;
+  .profile__inner {
+    position: relative;
   }
 }

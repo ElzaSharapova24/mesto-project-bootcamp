@@ -6,8 +6,8 @@
   padding: 20px 74px;
 }
 @media (max-width: 720px) {
-    .profile__button  {
-        max-width: 100%;
-        width: 100%;
-      }
+  .profile__button {
+    max-width: 100%;
+    width: 100%;
+  }
 }

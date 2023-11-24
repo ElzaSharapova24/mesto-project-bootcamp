@@ -5,8 +5,8 @@
 }
 
 @media (max-width: 720px) {
-    .profile {
-        justify-content: center;
-        flex-direction: column;
-      }
+  .profile {
+    justify-content: center;
+    flex-direction: column;
+  }
 }

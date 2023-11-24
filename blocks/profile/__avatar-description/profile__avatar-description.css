@@ -6,10 +6,10 @@
 }
 
 @media (max-width: 720px) {
-  .profile__avatar-description  {
-      margin-bottom: 36px;
-      font-size: 14px;
-      line-height: 17px;
-      text-align: center;
+  .profile__avatar-description {
+    margin-bottom: 36px;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
   }
 }

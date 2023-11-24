@@ -7,7 +7,7 @@
 }
 
 @media (max-width: 720px) {
-  .modal__title  {
+  .modal__title {
     font-size: 18px;
     line-height: 22px;
     margin-bottom: 61px;

@@ -4,13 +4,9 @@
   right: -46px;
 }
 
-
 @media (max-width: 720px) {
   .modal__btn-close {
     top: -36px;
     right: 0;
   }
 }
-
-
-
