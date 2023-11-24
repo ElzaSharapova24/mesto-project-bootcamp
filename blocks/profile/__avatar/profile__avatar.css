@@ -3,6 +3,7 @@
   object-position: center;
   max-width: 100%;
 }
+
 @media (max-width: 720px) {
   .profile__avatar {
     margin-bottom: 27px;
