@@ -24,7 +24,7 @@
 }
 @media (max-width: 720px) {
     .page {
-        padding-left: 19px;
-        padding-right: 19px;
+        padding-left: 0;
+        padding-right: 0;
       }
 }

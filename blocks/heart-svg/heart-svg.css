@@ -1,0 +1,14 @@
+.heart-svg {
+  width: 28px;
+  height: 28px;
+  transition: opacity .3s ease-in-out, fill .4s ease-in-out;
+}
+
+.heart-svg:hover {
+  opacity: .6;
+}
+
+.heart-svg:active {
+  opacity: 1;
+  fill: black;
+}

@@ -5,6 +5,11 @@
   cursor: pointer;
   transition: opacity .4s ease-in-out;
 }
+
+.btn:focus {
+  outline: none;
+}
+
 .btn:hover {
   opacity: .6;
 }

@@ -4,8 +4,11 @@
   line-height: 22px;
   color: currentColor;
 }
+
 @media (max-width: 720px) {
-    .profile__avatar-description  {
-        margin-bottom: 36px;
-      }
+  .profile__avatar-description  {
+      margin-bottom: 36px;
+      font-size: 14px;
+      line-height: 17px;
+  }
 }

@@ -5,6 +5,7 @@
   color: currentColor;
   margin-bottom: 10px;
 }
+
 @media (max-width: 720px) {
     .profile__avatar-name  {
         font-size: 27px;

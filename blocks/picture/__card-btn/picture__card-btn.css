@@ -1,9 +1,8 @@
 .picture__card-btn {
-  width: 28px;
-  height: 19px;
-  background: url(../../../images/svg/like.svg) center no-repeat;
-  transition: opacity .4s ease-in-out;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
 }
-.picture__card-btn:hover {
-  opacity: .5;
-}
+
+

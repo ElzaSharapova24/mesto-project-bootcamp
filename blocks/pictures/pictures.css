@@ -1,3 +1,9 @@
 .pictures {
   padding-top: 50px;
 }
+
+@media (max-width: 720px) {
+  .pictures {
+    padding-top: 36px;
+  }
+}

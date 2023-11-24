@@ -1,0 +1,9 @@
+.descr {
+  margin-bottom: 36px;
+}
+
+@media (max-width: 720px) {
+  .descr {
+    margin-bottom: 29px;
+  }
+}

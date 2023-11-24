@@ -4,4 +4,10 @@
   color: #FFFFFF;
   padding: 14px;
   border-radius: 2px;
+  transition: opacity .4s ease-in-out;
+}
+
+
+.modal__btn:hover {
+  opacity: .8;
 }

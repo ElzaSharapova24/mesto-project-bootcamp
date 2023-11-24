@@ -1,5 +1,16 @@
 .modal__btn-close {
   position: absolute;
-  top: -32px;
-  right: -39px;
+  top: -36px;
+  right: -46px;
 }
+
+
+@media (max-width: 720px) {
+  .modal__btn-close {
+    top: -36px;
+    right: 0;
+  }
+}
+
+
+

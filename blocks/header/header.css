@@ -1,8 +1,9 @@
 .header {
-  padding-top: 37px;
+  padding-top: 45px;
 }
+
 @media (max-width: 720px) {
     .header  {
-        padding-top: 20px;;
-      }
+      padding-top: 28px;
+    }
 }
