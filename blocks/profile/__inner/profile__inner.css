@@ -3,3 +3,9 @@
   align-items: center;
   column-gap: 20px;
 }
+
+@media (max-width: 720px) {
+  .profile__inner  {
+   position: relative;
+  }
+}

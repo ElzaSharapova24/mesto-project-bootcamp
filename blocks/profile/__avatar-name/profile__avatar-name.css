@@ -10,5 +10,9 @@
     .profile__avatar-name  {
         font-size: 27px;
         line-height: 33px;
+      width: 192px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
       }
 }

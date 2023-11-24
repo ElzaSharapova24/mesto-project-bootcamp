@@ -6,5 +6,9 @@
 @media (max-width: 720px) {
     .profile__btn  {
         background-size: 18px 18px;
+        position: absolute;
+        left: 100%;
+        top: 6px;
+        margin-left: 5px;
       }
 }
