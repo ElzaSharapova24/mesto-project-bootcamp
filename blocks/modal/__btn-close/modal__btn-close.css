@@ -1,12 +1,17 @@
 .modal__btn-close {
   position: absolute;
-  top: -36px;
-  right: -46px;
+  top: -40px;
+  right: -40px;
+  width: 32px;
+  height: 32px;
+  background: url("../../../images/svg/closeIcon.svg") right top no-repeat;
 }
 
 @media (max-width: 720px) {
   .modal__btn-close {
     top: -36px;
     right: 0;
+    width: 20px;
+    height: 20px;
   }
 }

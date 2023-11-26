@@ -3,6 +3,7 @@
   flex-direction: column;
   row-gap: 40px;
   max-width: 1280px;
+  height: 100%;
   margin: 0 auto;
   font-family: "Inter", Arial, Helvetica, sans-serif;
   box-sizing: border-box;

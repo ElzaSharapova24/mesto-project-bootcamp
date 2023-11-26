@@ -1,6 +1,19 @@
 .picture__card-btn {
   padding: 0;
   border: 0;
-  background-color: transparent;
+  width: 30px;
+  height: 19px;
+  background: url("../../../images/svg/Vector.svg") right no-repeat;
+  transition: opacity .4s ease-in-out, background .4s ease-in-out;
   cursor: pointer;
+}
+
+.picture__card-btn:hover {
+  opacity: .5;
+}
+
+
+.picture__card-btn:active {
+  opacity: 1;
+  background: url("../../../images/svg/Union.svg") right no-repeat;
 }

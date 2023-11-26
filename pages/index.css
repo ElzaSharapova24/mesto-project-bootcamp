@@ -4,12 +4,8 @@
 @import url(../blocks/page/page.css);
 @import url(../blocks/content/content.css);
 @import url(../blocks/btn/btn.css);
-@import url(../blocks/descr/descr.css);
-@import url(../blocks/reset/reset.css);
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__image/header__image.css);
-@import url(../blocks/header/__line/header__line.css);
-@import url(../blocks/heart-svg/heart-svg.css);
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
 @import url(../blocks/profile/__avatar-name/profile__avatar-name.css);
@@ -20,6 +16,8 @@
 @import url(../blocks/profile/__btn/profile__btn.css);
 @import url(../blocks/profile/__button/profile__button.css);
 @import url(../blocks/pictures/pictures.css);
+@import url(../blocks/pictures/__list/pictures__list.css);
+@import url(../blocks/pictures/__list/-item/pictures__list-item.css);
 @import url(../blocks/picture/picture.css);
 @import url(../blocks/picture/__card/picture__card.css);
 @import url(../blocks/picture/__card-img/picture__card-img.css);
@@ -30,7 +28,6 @@
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 @import url(../blocks/modal/modal.css);
 @import url(../blocks/modal/__content/modal__content.css);
-@import url(../blocks/close-svg/close-svg.css);
 @import url(../blocks/modal/__form/modal__form.css);
 @import url(../blocks/modal/__title/modal__title.css);
 @import url(../blocks/modal/__input/modal__input.css);
