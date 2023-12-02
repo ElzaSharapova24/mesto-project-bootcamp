@@ -6,10 +6,10 @@
   line-height: 1.14;
   color: currentColor;
   margin-bottom: 10px;
-  width: 294px;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  max-width: 304px;
 
 }
 

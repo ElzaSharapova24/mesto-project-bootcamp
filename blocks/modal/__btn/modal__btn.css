@@ -14,3 +14,10 @@
 .modal__btn:hover {
   opacity: 0.8;
 }
+
+@media (max-width: 720px) {
+  .modal__btn {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}

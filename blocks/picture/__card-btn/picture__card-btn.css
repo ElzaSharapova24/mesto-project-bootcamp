@@ -13,7 +13,3 @@
 }
 
 
-.picture__card-btn:active {
-  opacity: 1;
-  background: url("../../../images/svg/Union.svg") right no-repeat;
-}

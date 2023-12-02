@@ -1,0 +1,8 @@
+.modal__btb-delete {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 18px;
+  height: 19px;
+  background: url("../../../images/svg/Trash.svg") right no-repeat;
+}

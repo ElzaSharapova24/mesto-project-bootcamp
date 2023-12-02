@@ -1,4 +1,4 @@
-.modal {
+.modal_type_img {
   display: flex;
   position: fixed;
   top: 0;
@@ -12,11 +12,4 @@
   visibility: hidden;
   opacity: 0;
   transition: visibility .3s ease-in-out, opacity .3s ease-in-out;
-}
-
-@media (max-width: 720px) {
-  .modal {
-    padding: 19px;
-    padding-right: 58px;
-  }
 }

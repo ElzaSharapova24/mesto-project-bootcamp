@@ -8,11 +8,23 @@
   border-bottom: 1px solid #ccc;
   padding-bottom: 5px;
   color: #000;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 400;
-  line-height: 17px;
+  line-height: 22px;
 }
 
 .modal__input:last-of-type {
   margin-bottom: 14px;
 }
+
+@media (max-width: 720px) {
+  .modal__input {
+    font-size: 14px;
+    line-height: 17px;
+  }
+
+  .modal__input:last-of-type {
+    margin-bottom: 9px;
+  }
+}
+
