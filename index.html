@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="pages/index.css" />
     <script defer src="js/main.js"></script>
-    <script defer src="js/render-card.js"></script>
-    <script defer src="js/imgModal.js"></script>
     <title>Mesto</title>
   </head>
   <body class="root">
@@ -35,17 +33,17 @@
           <button class="profile__button btn" type="submit"></button>
         </section>
         <section class="pictures">
-          <div class="pictures__list">
-		          <template class="pictures-template">
-			          <article class="pictures__list-item">
-				          <button class="modal__btb-delete btn" type="submit"></button>
-				          <img class="picture__card-img" src="" alt="" />
-				          <div class="picture__card-body">
-					          <h2 class="picture__card-title"></h2>
-					          <button class="picture__card-btn" type="submit"></button>
-				          </div>
-			          </article>
-		          </template>
+          <div class="pictures__cards">
+            <template class="pictures-template">
+              <article class="picture">
+                <button class="modal__btb-delete btn" type="submit"></button>
+                <img class="picture__card-img" src="" alt="" />
+                <div class="picture__card-body">
+                  <h2 class="picture__card-title"></h2>
+                  <button class="picture__card-btn" type="submit"></button>
+                </div>
+              </article>
+            </template>
           </div>
         </section>
         <div class="modal modal_type_edit">
@@ -53,8 +51,14 @@
             <button class="modal__btn-close btn" type="submit"></button>
             <h3 class="modal__title">Редактировать профиль</h3>
             <form class="modal__form" autocomplete="off">
-              <input class="modal__input modal__input-avatar-name" type="text" />
-              <input class="modal__input modal__input-avatar-descr" type="text" />
+              <input
+                class="modal__input modal__input-avatar-name"
+                type="text"
+              />
+              <input
+                class="modal__input modal__input-avatar-descr"
+                type="text"
+              />
               <button class="modal__btn btn" type="submit">Сохранить</button>
             </form>
           </div>
@@ -64,19 +68,29 @@
             <button class="modal__btn-close btn" type="submit"></button>
             <h3 class="modal__title">Новое место</h3>
             <form class="modal__form modal__form-input" autocomplete="off">
-              <input class="modal__input modal__input-name" type="text" placeholder="Название"/>
-              <input class="modal__input modal__input-link" type="text" placeholder="Ссылка на картинку"/>
-              <button class="modal__btn modal__btn-form btn" type="submit">Сохранить</button>
+              <input
+                class="modal__input modal__input-name"
+                type="text"
+                placeholder="Название"
+              />
+              <input
+                class="modal__input modal__input-link"
+                type="text"
+                placeholder="Ссылка на картинку"
+              />
+              <button class="modal__btn modal__btn-form btn" type="submit">
+                Сохранить
+              </button>
             </form>
           </div>
         </div>
         <div class="modal modal_type_img">
           <div class="modal__content-img">
             <button class="modal__btn-close btn" type="submit"></button>
-	          <figure class="modal__inner">
-		          <img class="modal__img" src="" alt="">
-		          <figcaption class="modal__caption">aaaa</figcaption>
-	          </figure>
+            <figure class="modal__inner">
+              <img class="modal__img" src="#" alt="#" />
+              <figcaption class="modal__caption"></figcaption>
+            </figure>
           </div>
         </div>
       </main>
