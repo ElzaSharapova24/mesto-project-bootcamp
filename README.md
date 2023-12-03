@@ -4,4 +4,4 @@
 
 ### Ссылка на проект в GitHub Pages
 
-[Mesto](https://elzasharapova24.github.io/Mesto/ "Mesto")
+[Mesto](https://elzasharapova24.github.io/MestoTravel/ "Mesto")
