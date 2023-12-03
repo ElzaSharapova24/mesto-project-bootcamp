@@ -1,16 +1,12 @@
-/*.picture {*/
-/*  list-style: none;*/
-/*  margin: 0;*/
-/*  padding: 0;*/
-/*  display: grid;*/
-/*  grid-template-columns: repeat(12, 1fr);*/
-/*  row-gap: 20px;*/
-/*  column-gap: 17px;*/
-/*}*/
+.picture {
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
 
 
-/*@media (max-width: 720px) {*/
-/*  .picture {*/
-/*    row-gap: 19px;*/
-/*  }*/
-/*}*/
+@media (max-width: 720px) {
+  .picture {
+    row-gap: 19px;
+  }
+}

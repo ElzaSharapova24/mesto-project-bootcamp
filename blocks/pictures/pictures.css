@@ -6,5 +6,6 @@
 @media (max-width: 720px) {
   .pictures {
     padding-top: 36px;
+    padding-bottom: 0;
   }
 }
