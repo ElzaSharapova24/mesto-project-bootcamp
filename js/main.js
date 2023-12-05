@@ -10,9 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const inputName = document.querySelector(".modal__input-avatar-name");
   const inputDescr = document.querySelector(".modal__input-avatar-descr");
   const profileName = document.querySelector(".profile__avatar-name");
-  const profileDescription = document.querySelector(
-    ".profile__avatar-description"
-  );
+  const profileDescription = document.querySelector(".profile__avatar-description");
 
   //открытие модального окна
 
@@ -64,7 +62,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   form.addEventListener("submit", handleOpenForm);
-
   formElement.addEventListener("submit", handleFormEditSubmit);
 
   btnEditModal.addEventListener("click", function () {
@@ -77,10 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
   modalEditElement.addEventListener("mousedown", closeModalClick);
   modalAddElement.addEventListener("mousedown", closeModalClick);
 
-
-
   //отрисовка карточек
-
 
   const picturesContainer = document.querySelector(".pictures__cards");
   const picturesTemplate = document.querySelector(".pictures-template").content;
@@ -130,6 +124,5 @@ document.addEventListener("DOMContentLoaded", function () {
   function renderInitialCards() {
     initialCards.forEach(renderCard);
   }
-
   renderInitialCards();
 });
