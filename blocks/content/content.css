@@ -1,3 +1,8 @@
+.content {
+  min-height: 65vh;
+}
+
+
 @media (max-width: 720px) {
   .content {
     padding: 0 19px 0 19px;

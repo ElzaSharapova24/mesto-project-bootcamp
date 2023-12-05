@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="pages/index.css" />
     <script defer src="js/main.js"></script>
+    <script defer src="js/data.js"></script>
     <title>Mesto</title>
   </head>
   <body class="root">
@@ -33,9 +34,9 @@
           <button class="profile__button btn" type="submit"></button>
         </section>
         <section class="pictures">
-          <div class="pictures__list">
+          <div class="pictures__cards">
 		          <template class="pictures-template">
-			          <article class="pictures__list-item">
+			          <article class="picture">
 				          <button class="modal__btb-delete btn" type="submit"></button>
 				          <img class="picture__card-img" src="" alt="" />
 				          <div class="picture__card-body">
@@ -50,9 +51,9 @@
           <div class="modal__content">
             <button class="modal__btn-close btn" type="submit"></button>
             <h3 class="modal__title">Редактировать профиль</h3>
-            <form class="modal__form" autocomplete="off">
-              <input class="modal__input modal__input-avatar-name" type="text" />
-              <input class="modal__input modal__input-avatar-descr" type="text" />
+            <form class="modal__form" autocomplete="off" novalidate>
+              <input class="modal__input modal__input-avatar-name" type="text" required maxlength="30" minlength="2"/>
+              <input class="modal__input modal__input-avatar-descr" type="text" required maxlength="50" minlength="2"/>
               <button class="modal__btn btn" type="submit">Сохранить</button>
             </form>
           </div>
@@ -61,9 +62,9 @@
           <div class="modal__content">
             <button class="modal__btn-close btn" type="submit"></button>
             <h3 class="modal__title">Новое место</h3>
-            <form class="modal__form modal__form-input" autocomplete="off">
-              <input class="modal__input modal__input-name" type="text" placeholder="Название"/>
-              <input class="modal__input modal__input-link" type="text" placeholder="Ссылка на картинку"/>
+            <form class="modal__form modal__form-input" autocomplete="off" novalidate>
+              <input class="modal__input modal__input-name" type="text" placeholder="Название" required/>
+              <input class="modal__input modal__input-link" type="url" placeholder="Ссылка на картинку" required/>
               <button class="modal__btn modal__btn-form btn" type="submit">Сохранить</button>
             </form>
           </div>
@@ -72,7 +73,7 @@
           <div class="modal__content-img">
             <button class="modal__btn-close btn" type="submit"></button>
 	          <figure class="modal__inner">
-		          <img class="modal__img" src="" alt="">
+		          <img class="modal__img" src="#" alt="#">
 		          <figcaption class="modal__caption"></figcaption>
 	          </figure>
           </div>

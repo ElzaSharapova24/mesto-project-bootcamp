@@ -26,6 +26,7 @@
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 @import url(../blocks/modal/modal.css);
+@import url(../blocks/modal/_type_img/modal_type_img.css);
 @import url(../blocks/modal/__inner/modal__inner.css);
 @import url(../blocks/modal/__img/modal__img.css);
 @import url(../blocks/modal/__is-opened/modal__is-opened.css);
