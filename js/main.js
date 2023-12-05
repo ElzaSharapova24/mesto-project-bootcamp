@@ -1,9 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
   const modalEditElement = document.querySelector(".modal_type_edit");
   const modalAddElement = document.querySelector(".modal_type_add");
-  const editModalBtn = document.querySelector(".profile__btn");
-  const addModalBtn = document.querySelector(".profile__button");
+  const btnEditModal = document.querySelector(".profile__btn");
+  const btnAddModal = document.querySelector(".profile__button");
+  const modalGalleryElement = document.querySelector(".modal_type_img");
+  const modalCloseGallery = modalGalleryElement.querySelector(".modal__btn-close");
   const formElement = document.querySelector(".modal__form");
+  const form = document.querySelector(".modal__form-input");
   const inputName = document.querySelector(".modal__input-avatar-name");
   const inputDescr = document.querySelector(".modal__input-avatar-descr");
   const profileName = document.querySelector(".profile__avatar-name");
@@ -15,8 +18,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function openModalWindow(modal) {
     modal.classList.add("modal__is-opened");
-    inputName.value = profileName.innerText;
-    inputDescr.value = profileDescription.innerText;
   }
 
   //закрытие модального окна
@@ -32,66 +33,59 @@ document.addEventListener("DOMContentLoaded", function () {
     ) {
       const activeModal = document.querySelector(".modal.modal__is-opened");
       closeModalWindow(activeModal);
-      formElement.reset();
     }
   }
 
-  function handleFormSubmit(e) {
+  function handleFormEditSubmit(e) {
     e.preventDefault();
 
-    let nameValue = inputName.value;
-    let descrValue = inputDescr.value;
+    const nameValue = inputName.value;
+    const descrValue = inputDescr.value;
 
     profileName.textContent = nameValue;
     profileDescription.textContent = descrValue;
     closeModalClick(e);
   }
 
-  formElement.addEventListener("submit", handleFormSubmit);
 
-  editModalBtn.addEventListener("click", () =>
-    openModalWindow(modalEditElement)
-  );
+  function handleOpenForm(evt) {
+    evt.preventDefault();
 
-  addModalBtn.addEventListener("click", () => openModalWindow(modalAddElement));
+    const nameValue = inputGetName.value;
+    const linkValue = inputGetLink.value;
+
+    const cardData = {
+      name: nameValue,
+      link: linkValue,
+    };
+    renderCard(cardData);
+    closeModalClick(evt);
+    form.reset();
+  }
+
+  form.addEventListener("submit", handleOpenForm);
+
+  formElement.addEventListener("submit", handleFormEditSubmit);
+
+  btnEditModal.addEventListener("click", function () {
+      inputName.value = profileName.innerText;
+      inputDescr.value = profileDescription.innerText;
+      openModalWindow(modalEditElement)
+  });
+  modalCloseGallery.addEventListener("click", () => closeModalClick(modalGalleryElement));
+  btnAddModal.addEventListener("click", () => openModalWindow(modalAddElement));
   modalEditElement.addEventListener("mousedown", closeModalClick);
   modalAddElement.addEventListener("mousedown", closeModalClick);
 
 
+
   //отрисовка карточек
 
-  const initialCards = [
-    {
-      name: "Архыз",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-    },
-    {
-      name: "Челябинская область",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-    },
-    {
-      name: "Иваново",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-    },
-    {
-      name: "Камчатка",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-    },
-    {
-      name: "Холмогорский район",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-    },
-    {
-      name: "Байкал",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-    },
-  ];
 
   const picturesContainer = document.querySelector(".pictures__cards");
   const picturesTemplate = document.querySelector(".pictures-template").content;
-  const form = document.querySelector(".modal__form-input");
-
-  // модальное окно по клику на изображение
+  const inputGetName = form.querySelector(".modal__input-name");
+  const inputGetLink = form.querySelector(".modal__input-link");
   const modalImage = document.querySelector(".modal__img");
   const modalCaption = document.querySelector(".modal__caption");
 
@@ -103,39 +97,34 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function createCard({ name, link }) {
-    const placeElement = picturesTemplate
+    const pictureElement = picturesTemplate
       .querySelector(".picture")
       .cloneNode(true);
 
-    placeElement.querySelector(".picture__card-title").textContent = name;
-    placeElement.querySelector(".picture__card-img").src = link;
-    placeElement.querySelector(".picture__card-img").alt = name;
+    const picturesCardImg = pictureElement.querySelector('.picture__card-img');
+    const picturesCardTitle = pictureElement.querySelector('.picture__card-title');
 
-    const deleteCard = placeElement.querySelector(".modal__btb-delete");
-    const likeElement = placeElement.querySelector(".picture__card-btn");
-    likeElement.addEventListener("click", () => {
-      likeElement.classList.toggle("picture__card-btn--active");
+    picturesCardTitle.textContent = name;
+    picturesCardImg.src = link;
+    picturesCardImg.alt = name;
+
+    const btnDeleteCard = pictureElement.querySelector(".modal__btb-delete");
+    const btnLike = pictureElement.querySelector(".picture__card-btn");
+
+    btnLike.addEventListener("click", () => {
+      btnLike.classList.toggle("picture__card-btn--active");
     });
 
-    deleteCard.addEventListener("click", () => placeElement.remove());
-
-    const picture = placeElement.querySelector(".picture__card-img");
-    const modalGalleryElement = document.querySelector(".modal_type_img");
-    const modalGalleryClose =
-      modalGalleryElement.querySelector(".modal__btn-close");
-
-    picture.addEventListener("click", function () {
-      modalGalleryElement.classList.add("modal__is-opened");
+    picturesCardImg.addEventListener("click", function () {
       modalImage.src = link;
       modalImage.alt = name;
       modalCaption.innerHTML = name;
-    });
+      openModalWindow(modalGalleryElement)
+  });
 
-    modalGalleryClose.addEventListener("click", () =>
-      closeModalWindow(modalGalleryElement)
-    );
+    btnDeleteCard.addEventListener("click", () => pictureElement.remove());
 
-    return placeElement;
+    return pictureElement;
   }
 
   function renderInitialCards() {
@@ -143,20 +132,4 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   renderInitialCards();
-
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const getName = form.querySelector(".modal__input-name");
-    const getLink = form.querySelector(".modal__input-link");
-
-    const nameValue = getName.value;
-    const linkValue = getLink.value;
-
-    const cardData = {
-      name: nameValue,
-      link: linkValue,
-    };
-    renderCard(cardData);
-    closeModalClick(e);
-  });
 });

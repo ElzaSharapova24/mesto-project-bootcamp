@@ -1,6 +1,7 @@
 .picture__card-title {
   margin: 0;
   padding: 0;
+  max-width: 217px;
   font-size: 24px;
   font-weight: 900;
   line-height: 29px;
