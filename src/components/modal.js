@@ -7,7 +7,7 @@ const profileDescription = document.querySelector(".profile__avatar-description"
 function openModalWindow(modal) {
   modal.classList.add("modal__is-opened");
   console.log('click')
-  window.addEventListener('keydown', closeModalClick)
+  document.addEventListener('keydown', closeModalClick)
 }
 
 //закрытие модального окна
@@ -23,8 +23,7 @@ function closeModalClick(evt) {
     console.log('close');
     const activeModal = document.querySelector(".modal.modal__is-opened");
     closeModalWindow(activeModal);
-    
-    window.removeEventListener('keydown', closeModalClick)
+    document.removeEventListener('keydown', closeModalClick)
   }
 }
 
