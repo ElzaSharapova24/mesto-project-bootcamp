@@ -8,6 +8,7 @@ const profileDescription = document.querySelector(".profile__avatar-description"
 
 function openModalWindow(modal) {
   modal.classList.add("modal__is-opened");
+  console.log('click')
   window.addEventListener('keydown', closeModalClick)
 }
 
@@ -42,6 +43,7 @@ function handleFormEditSubmit(evt) {
 
 function handleOpenForm(evt) {
   evt.preventDefault();
+  
   const inputGetName = formEditElement.querySelector(".modal__input-name");
   const inputGetLink = formEditElement.querySelector(".modal__input-link");
 
@@ -52,6 +54,7 @@ function handleOpenForm(evt) {
     name: nameValue,
     link: linkValue,
   };
+  
   renderCard(cardData);
   closeModalClick(evt);
   formEditElement.reset();

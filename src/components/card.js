@@ -20,9 +20,7 @@ function createCard({ name, link }) {
     .cloneNode(true);
 
   const picturesCardImg = pictureElement.querySelector(".picture__card-img");
-  const picturesCardTitle = pictureElement.querySelector(
-    ".picture__card-title"
-  );
+  const picturesCardTitle = pictureElement.querySelector(".picture__card-title");
 
   picturesCardTitle.textContent = name;
   picturesCardImg.src = link;
