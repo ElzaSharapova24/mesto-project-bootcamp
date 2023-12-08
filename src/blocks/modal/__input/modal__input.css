@@ -1,7 +1,9 @@
 .modal__input {
   -webkit-appearance: none;
   appearance: none;
-  border: none;
+  border-top: none;
+  border-right: none;
+  border-left: none;
   border-radius: 0;
   background-color: #fff;
   outline: none;
@@ -27,4 +29,6 @@
     margin-bottom: 9px;
   }
 }
+
+
 

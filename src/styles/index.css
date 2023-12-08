@@ -27,6 +27,8 @@
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 @import url(../blocks/modal/modal.css);
 @import url(../blocks/modal/_type_img/modal_type_img.css);
+@import url(../blocks/modal/__input/-error/modal__input-error.css);
+@import url(../blocks/modal/__input/_type_error/modal__input_type_error.css);
 @import url(../blocks/modal/__inner/modal__inner.css);
 @import url(../blocks/modal/__img/modal__img.css);
 @import url(../blocks/modal/__is-opened/modal__is-opened.css);
@@ -38,3 +40,4 @@
 @import url(../blocks/modal/__btn/modal__btn.css);
 @import url(../blocks/modal/__btn-close/modal__btn-close.css);
 @import url(../blocks/modal/__btb-delete/modal__btb-delete.css);
+@import url(../blocks/modal/__btn/-disabled/modal__btn-disabled.css);
