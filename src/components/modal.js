@@ -1,5 +1,3 @@
-import {renderCard} from "./card";
-import {formEditElement} from "./index";
 
 const inputName = document.querySelector(".modal__input-avatar-name");
 const inputDescr = document.querySelector(".modal__input-avatar-descr");
@@ -14,10 +12,10 @@ function openModalWindow(modal) {
 
 //закрытие модального окна
 
-function closeModalWindow(modal) {
-  modal.classList.remove("modal__is-opened");
-  setTimeout(() => modal.querySelector('form').reset(), 400);
-}
+  function closeModalWindow(modal) {
+    modal.classList.remove("modal__is-opened");
+    setTimeout(() => modal.querySelector('form').reset(), 400);
+  }
 
 function closeModalClick(evt) {
   if (
@@ -30,34 +28,5 @@ function closeModalClick(evt) {
   }
 }
 
-function handleFormEditSubmit(evt) {
-  evt.preventDefault();
 
-  const nameValue = inputName.value;
-  const descrValue = inputDescr.value;
-
-  profileName.textContent = nameValue;
-  profileDescription.textContent = descrValue;
-  closeModalClick(evt);
-}
-
-function handleOpenForm(evt) {
-  evt.preventDefault();
-  
-  const inputGetName = formEditElement.querySelector(".modal__input-name");
-  const inputGetLink = formEditElement.querySelector(".modal__input-link");
-
-  const nameValue = inputGetName.value;
-  const linkValue = inputGetLink.value;
-
-  const cardData = {
-    name: nameValue,
-    link: linkValue,
-  };
-  
-  renderCard(cardData);
-  closeModalClick(evt);
-  formEditElement.reset();
-}
-
-export { openModalWindow, closeModalClick, closeModalWindow, handleFormEditSubmit, handleOpenForm, inputName, inputDescr, profileName, profileDescription }
+export { openModalWindow, closeModalClick, closeModalWindow, inputName, inputDescr, profileName, profileDescription }

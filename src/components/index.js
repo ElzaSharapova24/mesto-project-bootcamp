@@ -1,6 +1,7 @@
 import '../styles/index.css';
 import './validate'
-import { openModalWindow, closeModalClick, handleFormEditSubmit, handleOpenForm, inputName, inputDescr, profileName, profileDescription } from "./modal";
+import { openModalWindow, closeModalClick, inputName, inputDescr, profileName, profileDescription } from "./modal";
+import {renderCard} from "./card";
 
 
 
@@ -11,6 +12,36 @@ const btnEditModal = document.querySelector(".profile__btn");
 const btnAddModal = document.querySelector(".profile__button");
 const formAddElement = document.querySelector(".modal__form-edit");
 const formEditElement = document.querySelector(".modal__form-add");
+
+function handleFormEditSubmit(evt) {
+  evt.preventDefault();
+  
+  const nameValue = inputName.value;
+  const descrValue = inputDescr.value;
+  
+  profileName.textContent = nameValue;
+  profileDescription.textContent = descrValue;
+  closeModalClick(evt);
+}
+
+function handleOpenForm(evt) {
+  evt.preventDefault();
+  
+  const inputGetName = formEditElement.querySelector(".modal__input-name");
+  const inputGetLink = formEditElement.querySelector(".modal__input-link");
+  
+  const nameValue = inputGetName.value;
+  const linkValue = inputGetLink.value;
+  
+  const cardData = {
+    name: nameValue,
+    link: linkValue,
+  };
+  
+  renderCard(cardData);
+  closeModalClick(evt);
+  formEditElement.reset();
+}
 
 
 formEditElement.addEventListener("submit", handleOpenForm);
@@ -26,6 +57,7 @@ btnAddModal.addEventListener("click", () => openModalWindow(modalAddElement));
 modalEditElement.addEventListener("mousedown", closeModalClick);
 modalAddElement.addEventListener("mousedown", closeModalClick);
 modalGalleryElement.addEventListener("mousedown", () => closeModalClick(modalGalleryElement));
+
 
 export { handleFormEditSubmit, handleOpenForm, formEditElement, modalGalleryElement, }
 
