@@ -1,16 +1,12 @@
-
-
 function enableValidationForm(config) {
-  const formList = document.querySelectorAll(
-    config.formSelector
-  );
+  const formList = document.querySelectorAll(config.formSelector);
 
   formList.forEach(function (formItem) {
     formItem.addEventListener("reset", () => {
-      console.log('qweqw');
+      console.log("qweqw");
       formItem
-        .querySelectorAll('.modal__input-error')
-        .forEach(e => e.innerText = '')
+        .querySelectorAll(".modal__input-error")
+        .forEach((e) => (e.innerText = ""));
     });
     setEventListener(formItem, config);
   });
@@ -23,30 +19,15 @@ enableValidationForm({
   inputErrorClass: "modal__input_type_error",
 });
 
-function setEventListener(
-  formItem,
-  config,
-) {
-  const inputList = formItem.querySelectorAll(
-    config.inputSelector
-  );
-  const btnSubmit = formItem.querySelector(
-    config.submitButtonSelector
-  );
-  disabledButton(
-    btnSubmit,
-    formItem.checkValidity(),
-    config,
-  );
+function setEventListener(formItem, config) {
+  const inputList = formItem.querySelectorAll(config.inputSelector);
+  const btnSubmit = formItem.querySelector(config.submitButtonSelector);
+  disabledButton(btnSubmit, formItem.checkValidity(), config);
 
   inputList.forEach(function (inputItem) {
     inputItem.addEventListener("input", function () {
       checkValidity(inputItem, formItem, config);
-      disabledButton(
-        btnSubmit,
-        formItem.checkValidity(),
-        config,
-      );
+      disabledButton(btnSubmit, formItem.checkValidity(), config);
     });
 
     formItem.addEventListener("submit", function (evt) {
@@ -87,5 +68,11 @@ function hideInputError(inputItem, formErrorMessage, config) {
   formErrorMessage.textContent = inputItem.validationMessage;
 }
 
-
-export { enableValidationForm,setEventListener, checkValidity, disabledButton, showInputError, hideInputError}
+export {
+  enableValidationForm,
+  setEventListener,
+  checkValidity,
+  disabledButton,
+  showInputError,
+  hideInputError,
+};

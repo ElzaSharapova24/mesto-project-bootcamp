@@ -1,4 +1,5 @@
 .modal__is-opened {
+  pointer-events: initial;
   visibility: visible;
   opacity: 1;
 }

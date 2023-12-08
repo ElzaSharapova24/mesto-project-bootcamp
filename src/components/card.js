@@ -1,6 +1,6 @@
-import {initialCards} from "./data";
+import { initialCards } from "./data";
 import { openModalWindow } from "./modal";
-import {modalGalleryElement} from "./index";
+import { modalGalleryElement } from "./index";
 
 const picturesContainer = document.querySelector(".pictures__cards");
 const picturesTemplate = document.querySelector(".pictures-template").content;
@@ -20,7 +20,9 @@ function createCard({ name, link }) {
     .cloneNode(true);
 
   const picturesCardImg = pictureElement.querySelector(".picture__card-img");
-  const picturesCardTitle = pictureElement.querySelector(".picture__card-title");
+  const picturesCardTitle = pictureElement.querySelector(
+    ".picture__card-title"
+  );
 
   picturesCardTitle.textContent = name;
   picturesCardImg.src = link;
@@ -50,4 +52,4 @@ function renderInitialCards() {
 }
 renderInitialCards();
 
-export { renderCard, createCard, renderInitialCards }
+export { renderCard, createCard, renderInitialCards };
