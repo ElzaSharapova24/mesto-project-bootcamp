@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!--    <script defer type="module" src="components/index.js"></script>-->
+<!--    <script defer type="module" src="components/data.js"></script>-->
+    <title>Mesto</title>
+  </head>
+  <body class="root">
+    <div class="page">
+      <header class="header">
+        <a class="header__logo link" href="#" target="_blank">
+          <img class="header__image" src="<%=require('./images/svg/logo.svg')%>" alt="Россия" />
+        </a>
+      </header>
+      <main class="content">
+        <section class="profile">
+          <div class="profile__info">
+            <img
+              class="profile__avatar"
+              src="<%=require('./images/image.jpg')%>"
+              alt="Изображение пользователя"
+            />
+            <div class="profile__wrap">
+              <div class="profile__inner">
+                <h1 class="profile__avatar-name">Жак-Ив Кусто</h1>
+                <button class="profile__btn btn" type="submit"></button>
+              </div>
+              <p class="profile__avatar-description">Исследователь океана</p>
+            </div>
+          </div>
+          <button class="profile__button btn" type="submit"></button>
+        </section>
+        <section class="pictures">
+          <div class="pictures__cards">
+            <template class="pictures-template">
+              <article class="picture">
+                <button class="modal__btb-delete btn" type="submit"></button>
+                <img class="picture__card-img" src="" alt="" />
+                <div class="picture__card-body">
+                  <h2 class="picture__card-title"></h2>
+                  <button class="picture__card-btn" type="submit"></button>
+                </div>
+              </article>
+            </template>
+          </div>
+        </section>
+        <div class="modal modal_type_edit">
+          <div class="modal__content">
+            <button class="modal__btn-close btn" type="submit"></button>
+            <h3 class="modal__title">Редактировать профиль</h3>
+            <form
+              class="modal__form modal__form-edit"
+              autocomplete="off"
+              novalidate
+            >
+              <input
+                class="modal__input modal__input-avatar-name"
+                type="text"
+                name="profile-input"
+                required
+                minlength="2"
+                maxlength="40"
+              />
+              <span class="modal__input-error" id="profile-input-error"></span>
+              <input
+                class="modal__input modal__input-avatar-descr modal__input_type_error"
+                type="text"
+                name="descr-input"
+                required
+                maxlength="200"
+                minlength="2"
+              />
+              <span class="modal__input-error" id="descr-input-error"></span>
+              <button class="modal__btn btn" type="submit">Сохранить</button>
+            </form>
+          </div>
+        </div>
+        <div class="modal modal_type_add">
+          <div class="modal__content">
+            <button class="modal__btn-close btn" type="submit"></button>
+            <h3 class="modal__title">Новое место</h3>
+            <form
+              class="modal__form modal__form-add"
+              autocomplete="off"
+              novalidate
+            >
+              <input
+                class="modal__input modal__input-name modal__input_type_error"
+                type="text"
+                name="name-input"
+                placeholder="Название"
+                required
+                maxlength="30"
+                minlength="2"
+              />
+              <span class="modal__input-error" id="name-input-error"></span>
+              <input
+                class="modal__input modal__input-link modal__input_type_error"
+                type="url"
+                name="link-input"
+                placeholder="Ссылка на картинку"
+                required
+              />
+              <span class="modal__input-error" id="link-input-error"></span>
+              <button class="modal__btn modal__btn-form btn" type="submit">
+                Сохранить
+              </button>
+            </form>
+          </div>
+        </div>
+        <div class="modal modal_type_img">
+          <div class="modal__content-img">
+            <button class="modal__btn-close btn" type="submit"></button>
+            <figure class="modal__inner">
+              <img class="modal__img" src="#" alt="#" />
+              <figcaption class="modal__caption"></figcaption>
+            </figure>
+          </div>
+        </div>
+      </main>
+      <footer class="footer">
+        <p class="footer__copyright reset">&#169; 2020 Mesto Russia</p>
+      </footer>
+    </div>
+  </body>
+</html>

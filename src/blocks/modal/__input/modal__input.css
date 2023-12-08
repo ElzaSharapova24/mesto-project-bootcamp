@@ -1,7 +1,9 @@
 .modal__input {
   -webkit-appearance: none;
   appearance: none;
-  border: none;
+  border-top: none;
+  border-right: none;
+  border-left: none;
   border-radius: 0;
   background-color: #fff;
   outline: none;
@@ -27,4 +29,12 @@
     margin-bottom: 9px;
   }
 }
+/*.modal__input:valid {*/
+/*  border-bottom: 1px solid #ccc;*/
+/*}*/
+
+
+/*.modal__input:invalid {*/
+/*  border-bottom: 1px solid red;*/
+/*}*/
 
