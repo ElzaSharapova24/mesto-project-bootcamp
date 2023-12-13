@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <!--    <script defer type="module" src="components/index.js"></script>-->
-<!--    <script defer type="module" src="components/data.js"></script>-->
+<!--    <script defer type="module" src="components/api.js"></script>-->
     <title>Mesto</title>
   </head>
   <body class="root">
@@ -39,8 +39,11 @@
                 <button class="modal__btb-delete btn" type="submit"></button>
                 <img class="picture__card-img" src="" alt="" />
                 <div class="picture__card-body">
-                  <h2 class="picture__card-title"></h2>
-                  <button class="picture__card-btn" type="submit"></button>
+	                <div class="picture__inner">
+		                <h2 class="picture__card-title"></h2>
+		                <button class="picture__card-btn" type="submit"></button>
+	                </div>
+	                <span class="picture__counter">2</span>
                 </div>
               </article>
             </template>

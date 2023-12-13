@@ -1,10 +1,3 @@
-const inputName = document.querySelector(".modal__input-avatar-name");
-const inputDescr = document.querySelector(".modal__input-avatar-descr");
-const profileName = document.querySelector(".profile__avatar-name");
-const profileDescription = document.querySelector(
-  ".profile__avatar-description"
-);
-
 function openModalWindow(modal) {
   modal.classList.add("modal__is-opened");
   console.log("click");
@@ -34,8 +27,4 @@ export {
   openModalWindow,
   closeModalClick,
   closeModalWindow,
-  inputName,
-  inputDescr,
-  profileName,
-  profileDescription,
 };

@@ -3,7 +3,6 @@ function enableValidationForm(config) {
 
   formList.forEach(function (formItem) {
     formItem.addEventListener("reset", () => {
-      console.log("qweqw");
       formItem
         .querySelectorAll(".modal__input-error")
         .forEach((e) => (e.innerText = ""));
@@ -49,7 +48,6 @@ function checkValidity(inputItem, formItem, config) {
 
 function disabledButton(btnElement, isActive, config) {
   if (isActive) {
-    console.log(isActive);
     btnElement.disabled = false;
     btnElement.classList.remove(config.inactiveButtonClass);
   } else {

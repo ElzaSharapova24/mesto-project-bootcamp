@@ -1,18 +1,7 @@
-import { initialCards } from "./data";
 import { openModalWindow } from "./modal";
-import { modalGalleryElement } from "./index";
-
-const picturesContainer = document.querySelector(".pictures__cards");
-const picturesTemplate = document.querySelector(".pictures-template").content;
-const modalImage = document.querySelector(".modal__img");
-const modalCaption = document.querySelector(".modal__caption");
+import {modalGalleryElement, modalCaption, modalImage, picturesTemplate} from "./main";
 
 // добавление и отрисовка карточек
-
-function renderCard(data) {
-  const newCard = createCard(data);
-  picturesContainer.prepend(newCard);
-}
 
 function createCard({ name, link }) {
   const pictureElement = picturesTemplate
@@ -47,9 +36,5 @@ function createCard({ name, link }) {
   return pictureElement;
 }
 
-function renderInitialCards() {
-  initialCards.forEach(renderCard);
-}
-renderInitialCards();
 
-export { renderCard, createCard, renderInitialCards };
+export { createCard };

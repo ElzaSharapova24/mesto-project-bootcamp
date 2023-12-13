@@ -3,22 +3,21 @@ import "./validate";
 import {
   openModalWindow,
   closeModalClick,
-  inputName,
-  inputDescr,
-  profileName,
-  profileDescription,
 } from "./modal";
-import { renderCard } from "./card";
+import { initialCards } from "./api";
+import {createCard} from "./card";
+import {
+  btnAddModal, btnEditModal,
+  formAddElement,
+  formEditElement,
+  inputDescr, inputGetLink, inputGetName,
+  inputName, modalAddElement,
+  modalEditElement, modalGalleryElement, picturesContainer,
+  profileDescription,
+  profileName
+} from "./main";
 
-const modalEditElement = document.querySelector(".modal_type_edit");
-const modalAddElement = document.querySelector(".modal_type_add");
-const modalGalleryElement = document.querySelector(".modal_type_img");
-const btnEditModal = document.querySelector(".profile__btn");
-const btnAddModal = document.querySelector(".profile__button");
-const formEditElement = document.querySelector(".modal__form-edit");
-const formAddElement = document.querySelector(".modal__form-add");
-
-function handleFormEditSubmit(evt) {
+function getFormEditValue(evt) {
   evt.preventDefault();
 
   const nameValue = inputName.value;
@@ -31,10 +30,7 @@ function handleFormEditSubmit(evt) {
 
 function handleOpenForm(evt) {
   evt.preventDefault();
-
-  const inputGetName = formAddElement.querySelector(".modal__input-name");
-  const inputGetLink = formAddElement.querySelector(".modal__input-link");
-
+  
   const nameValue = inputGetName.value;
   const linkValue = inputGetLink.value;
 
@@ -48,7 +44,16 @@ function handleOpenForm(evt) {
   formEditElement.reset();
 }
 
-formEditElement.addEventListener("submit", handleFormEditSubmit);
+function renderCard(data) {
+  const newCard = createCard(data);
+  picturesContainer.prepend(newCard);
+}
+
+function renderInitialCards() {
+  initialCards.forEach(renderCard);
+}
+
+formEditElement.addEventListener("submit", getFormEditValue);
 formAddElement.addEventListener("submit", handleOpenForm);
 
 btnEditModal.addEventListener("click", function () {
@@ -69,9 +74,13 @@ modalGalleryElement.addEventListener("mousedown", () =>
   closeModalClick(modalGalleryElement)
 );
 
+renderInitialCards();
+
 export {
-  handleFormEditSubmit,
+  getFormEditValue,
   handleOpenForm,
   formEditElement,
   modalGalleryElement,
+  renderInitialCards,
+  createCard
 };
