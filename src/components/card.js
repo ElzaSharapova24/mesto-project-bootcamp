@@ -35,12 +35,8 @@ function createCard({ name, link, _id }) {
     modalCaption.innerHTML = name;
     openModalWindow(modalGalleryElement);
   });
-  
-  
-  deleteCard(_id).then(e => {
-    btnDeleteCard.addEventListener("click", () => pictureElement.remove());
-  })
-  
+
+  btnDeleteCard.addEventListener("click", () => pictureElement.remove());
   return pictureElement;
 }
 

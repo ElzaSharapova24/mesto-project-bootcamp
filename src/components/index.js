@@ -56,7 +56,6 @@ function renderInitialCards() {
     .then(cards => {
       cards.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
       cards.forEach(renderCard);
-      console.log(cards)
     });
 }
 
