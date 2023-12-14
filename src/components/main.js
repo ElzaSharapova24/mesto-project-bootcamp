@@ -18,4 +18,22 @@ const profileDescription = document.querySelector(
 const inputGetName = formAddElement.querySelector(".modal__input-name");
 const inputGetLink = formAddElement.querySelector(".modal__input-link");
 
-export { modalCaption, picturesContainer, modalAddElement, modalEditElement, inputName, profileDescription, profileName, inputDescr, btnAddModal, btnEditModal, formAddElement, formEditElement, modalGalleryElement, modalImage, picturesTemplate, inputGetLink, inputGetName };
+export {
+  modalCaption,
+  picturesContainer,
+  modalAddElement,
+  modalEditElement,
+  inputName,
+  profileDescription,
+  profileName,
+  inputDescr,
+  btnAddModal,
+  btnEditModal,
+  formAddElement,
+  formEditElement,
+  modalGalleryElement,
+  modalImage,
+  picturesTemplate,
+  inputGetLink,
+  inputGetName,
+};

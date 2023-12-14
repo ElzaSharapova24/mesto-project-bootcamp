@@ -4,7 +4,7 @@ import {
   openModalWindow,
   closeModalClick,
 } from "./modal";
-import { initialCards } from "./api";
+import {addCard, getAllCards} from "./api";
 import {createCard} from "./card";
 import {
   btnAddModal, btnEditModal,
@@ -17,7 +17,7 @@ import {
   profileName
 } from "./main";
 
-function getFormEditValue(evt) {
+function getEditFormValue(evt) {
   evt.preventDefault();
 
   const nameValue = inputName.value;
@@ -38,10 +38,12 @@ function handleOpenForm(evt) {
     name: nameValue,
     link: linkValue,
   };
-
-  renderCard(cardData);
+  addCard(cardData).then(c => {
+    renderCard(c);
+    closeModalClick(evt);
+    formEditElement.reset();
+  })
   closeModalClick(evt);
-  formEditElement.reset();
 }
 
 function renderCard(data) {
@@ -50,10 +52,16 @@ function renderCard(data) {
 }
 
 function renderInitialCards() {
-  initialCards.forEach(renderCard);
+  getAllCards()
+    .then(cards => {
+      cards.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+      cards.forEach(renderCard);
+      console.log(cards)
+    });
 }
 
-formEditElement.addEventListener("submit", getFormEditValue);
+
+formEditElement.addEventListener("submit", getEditFormValue);
 formAddElement.addEventListener("submit", handleOpenForm);
 
 btnEditModal.addEventListener("click", function () {
@@ -77,7 +85,7 @@ modalGalleryElement.addEventListener("mousedown", () =>
 renderInitialCards();
 
 export {
-  getFormEditValue,
+  getEditFormValue,
   handleOpenForm,
   formEditElement,
   modalGalleryElement,

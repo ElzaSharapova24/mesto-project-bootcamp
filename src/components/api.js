@@ -1,39 +1,34 @@
-export const initialCards = [
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
 
+function onResponse(res) {
+  return res.ok ? res.json() : res.json().then((error) => Promise.reject(error))
+}
 
-// function addCards() {
-//   return fetch('https://nomoreparties.co/v1/cohort-42/cards', {
-//     headers: {
-//       authorization: 'c56e30dc-2883-4270-a59e-b2f7bae969c6'
-//     }
-//   })
-//     .then(res => res.json())
-//     .then((result) => {
-//       console.log(result);
-//     });
-// }
+export function getAllCards() {
+  return fetch('https://nomoreparties.co/v1/wbf-cohort-15/cards', {
+    headers: {
+      authorization: 'bbf4eaaa-f328-4bc0-8623-4b1bddc04a3d',
+    }
+  }).then(onResponse)
+}
+
+export function addCard(cardData) {
+  return fetch('https://nomoreparties.co/v1/wbf-cohort-15/cards', {
+    method: "POST",
+    headers: {
+      authorization: 'bbf4eaaa-f328-4bc0-8623-4b1bddc04a3d',
+      "Content-Type": "application/json",
+    },
+    
+    body: JSON.stringify(cardData)
+  }).then(e => e.json());
+}
+
+export function deleteCard(cardId) {
+  return fetch(`https://nomoreparties.co/v1/wbf-cohort-15/cards/${cardId}`, {
+    method: "DELETE",
+    headers: {
+      authorization: 'bbf4eaaa-f328-4bc0-8623-4b1bddc04a3d',
+      "Content-Type": "application/json",
+    },
+  })
+}
