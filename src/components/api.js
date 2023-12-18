@@ -2,6 +2,10 @@ function onResponse(res) {
   return res.ok ? res.json() : res.json().then((error) => Promise.reject(error))
 }
 
+export function getAllInfo() {
+  return Promise.all([getAllCards(), getUserInfo()])
+}
+
 export function getAllCards() {
   return fetch('https://nomoreparties.co/v1/wbf-cohort-15/cards', {
     headers: {
@@ -31,7 +35,7 @@ export function deleteCard(cardId) {
   })
 }
 //
-export function getProfileInfo() {
+export function getUserInfo() {
   return fetch('https://nomoreparties.co/v1/wbf-cohort-15/users/me', {
     headers: {
       authorization: 'bbf4eaaa-f328-4bc0-8623-4b1bddc04a3d',
@@ -54,4 +58,14 @@ export function editProfile(dataProfile) {
   }).then((res) => {
     return res.json(); // возвращаем результат работы метода и идём в следующий then
   });
+}
+
+export function updateLikes(cardId, liked) {
+  return fetch(`https://nomoreparties.co/v1/wbf-cohort-15/cards/likes/${cardId}`, {
+    method: liked ? "DELETE" : "PUT",
+    headers: {
+      authorization: 'bbf4eaaa-f328-4bc0-8623-4b1bddc04a3d',
+      "Content-Type": "application/json; charset=UTF-8",
+    }
+  }).then(onResponse)
 }

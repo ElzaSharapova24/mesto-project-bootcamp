@@ -4,7 +4,7 @@ import {
   openModalWindow,
   closeModalClick,
 } from "./modal";
-import {addCard, editProfile, getAllCards, getProfileInfo} from "./api";
+import {addCard, editProfile, getAllCards, getUserInfo} from "./api";
 import {createCard} from "./card";
 import {
   btnAddModal, btnEditModal, btnSubmitElements,
@@ -103,14 +103,12 @@ function renderInitialCards() {
     .then(cards => {
       cards.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
       cards.forEach(renderCard);
-      // console.log(cards)
     });
 }
 
-function renderInitialProfileInfo(){
-  getProfileInfo()
+function renderInitialUserInfo(){
+  getUserInfo()
     .then(e => {
-      console.log(e);
       profileName.textContent = e.name;
       profileDescription.textContent = e.about
     })
@@ -139,7 +137,7 @@ modalGalleryElement.addEventListener("mousedown", () =>
 );
 
 renderInitialCards();
-renderInitialProfileInfo();
+renderInitialUserInfo();
 
 
 export {
