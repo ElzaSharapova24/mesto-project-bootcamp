@@ -3,8 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<!--    <script defer type="module" src="components/index.js"></script>-->
-<!--    <script defer type="module" src="components/api.js"></script>-->
     <title>Mesto</title>
   </head>
   <body class="root">
@@ -17,11 +15,13 @@
       <main class="content">
         <section class="profile">
           <div class="profile__info">
-            <img
-              class="profile__avatar"
-              src="<%=require('./images/image.jpg')%>"
-              alt="Изображение пользователя"
-            />
+           <button class="profile__info-btn btn">
+	           <img
+					           class="profile__avatar"
+					           src=""
+					           alt="Изображение пользователя"
+	           />
+           </button>
             <div class="profile__wrap">
               <div class="profile__inner">
                 <h1 class="profile__avatar-name"></h1>
@@ -49,6 +49,29 @@
             </template>
           </div>
         </section>
+	      <div class="modal modal_type_edit_avatar">
+		      <div class="modal__content">
+			      <button class="modal__btn-close btn" type="submit"></button>
+			      <h3 class="modal__title">Обновить аватар</h3>
+			      <form
+							      class="modal__form modal__form-edit_avatar"
+							      autocomplete="off"
+							      novalidate
+			      >
+				      <input
+								      class="modal__input modal__input-avatar modal__input_type_error"
+								      type="url"
+								      name="avatar-input"
+								      placeholder="Введите ссылку"
+								      required
+				      />
+				      <span class="modal__input-error" id="avatar-input-error"></span>
+				      <button class="modal__btn modal__btn-form btn" type="submit">
+					      Сохранить
+				      </button>
+			      </form>
+		      </div>
+	      </div>
         <div class="modal modal_type_edit">
           <div class="modal__content">
             <button class="modal__btn-close btn" type="submit"></button>

@@ -1,0 +1,26 @@
+.profile__info-btn {
+  position: relative;
+  transition: background-color .4s ease-in-out;
+}
+
+.profile__info-btn:hover {
+  background-color: rgba(0, 0, 0, 0.80);
+}
+
+.profile__info-btn:hover:after {
+  content: '';
+  position: absolute;
+  top: 40%;
+  left: 43%;
+  width: 26px;
+  height: 26px;
+  background: url("../../../../images/svg/editIcon.svg") no-repeat center;
+  opacity: 1;
+}
+
+@media (max-width: 720px) {
+  .profile__info-btn:hover:after {
+    top: 34%;
+    left: 40%;
+  }
+}

@@ -4,17 +4,17 @@ import {
   openModalWindow,
   closeModalClick,
 } from "./modal";
-import {addCard, editProfile, getAllCards, getUserInfo} from "./api";
+import {addCard, editProfile, getAllCards, getUserInfo, updateUserAvatar} from "./api";
 import {createCard} from "./card";
 import {
-  btnAddModal, btnEditModal, btnSubmitElements,
-  formAddElement,
+  btnAddModal, btnEditAvatar, btnEditModal, btnSubmitElements,
+  formAddElement, formEditAvatar,
   formEditElement,
   inputDescr, inputGetLink, inputGetName,
-  inputName, modalAddElement,
-  modalEditElement, modalGalleryElement, picturesContainer,
+  inputName, modalAddElement, modalEditAvatarEl,
+  modalEditElement, modalGalleryElement, modalInputUsersAvatar, picturesContainer,
   profileDescription,
-  profileName,
+  profileName, userAvatarImg,
 } from "./main";
 
 
@@ -51,7 +51,7 @@ function submitElemDel() {
 
 function getEditFormValue(evt) {
   evt.preventDefault();
-  submitElemAdd()
+  submitElemAdd();
   
   const nameValue = inputName.value;
   const descrValue = inputDescr.value;
@@ -63,7 +63,7 @@ function getEditFormValue(evt) {
   }).catch((error) => {
     console.log(error)
   }).finally(() => {
-    submitElemDel()
+    submitElemDel();
   })
   
   closeModalClick(evt);
@@ -72,7 +72,7 @@ function getEditFormValue(evt) {
 
 function handleOpenAddForm(evt) {
   evt.preventDefault();
-  submitElemAdd()
+  submitElemAdd();
   
   const nameValue = inputGetName.value;
   const linkValue = inputGetLink.value;
@@ -88,7 +88,27 @@ function handleOpenAddForm(evt) {
   }).catch((error) => {
     console.log(error)
   }).finally(() => {
-    submitElemDel()
+    submitElemDel();
+  })
+  closeModalClick(evt);
+}
+
+function handleEditAvatarElement(evt) {
+  evt.preventDefault();
+  submitElemAdd();
+  
+  const userAvatarValue = modalInputUsersAvatar.value
+  
+  const userAvatar = {
+    avatar:userAvatarValue
+  }
+  updateUserAvatar(userAvatar).then(e => {
+    userAvatarImg.src = userAvatar.avatar
+    closeModalClick(evt);
+  }).catch((error) => {
+    console.log(error)
+  }).finally(() => {
+    submitElemDel();
   })
   closeModalClick(evt);
 }
@@ -103,6 +123,7 @@ function renderInitialCards() {
     .then(cards => {
       cards.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
       cards.forEach(renderCard);
+      console.log(cards)
     });
 }
 
@@ -111,12 +132,15 @@ function renderInitialUserInfo(){
     .then(e => {
       profileName.textContent = e.name;
       profileDescription.textContent = e.about
+      userAvatarImg.src = e.avatar
+      
     })
 }
 
 
 formEditElement.addEventListener("submit", getEditFormValue);
 formAddElement.addEventListener("submit", handleOpenAddForm);
+formEditAvatar.addEventListener("submit", handleEditAvatarElement);
 
 btnEditModal.addEventListener("click", function () {
   formEditElement.reset();
@@ -130,11 +154,17 @@ btnAddModal.addEventListener("click", () => {
   openModalWindow(modalAddElement);
 });
 
+btnEditAvatar.addEventListener("click", () => {
+  formEditAvatar.reset();
+  openModalWindow(modalEditAvatarEl)
+});
+
 modalEditElement.addEventListener("mousedown", closeModalClick);
 modalAddElement.addEventListener("mousedown", closeModalClick);
 modalGalleryElement.addEventListener("mousedown", () =>
   closeModalClick(modalGalleryElement)
 );
+modalEditAvatarEl.addEventListener("mousedown", closeModalClick)
 
 renderInitialCards();
 renderInitialUserInfo();

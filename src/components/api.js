@@ -2,10 +2,6 @@ function onResponse(res) {
   return res.ok ? res.json() : res.json().then((error) => Promise.reject(error))
 }
 
-export function getAllInfo() {
-  return Promise.all([getAllCards(), getUserInfo()])
-}
-
 export function getAllCards() {
   return fetch('https://nomoreparties.co/v1/wbf-cohort-15/cards', {
     headers: {
@@ -22,7 +18,7 @@ export function addCard(cardData) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(cardData)
-  }).then(e => e.json());
+  }).then(onResponse);
 }
 
 export function deleteCard(cardId) {
@@ -32,7 +28,7 @@ export function deleteCard(cardId) {
       authorization: 'bbf4eaaa-f328-4bc0-8623-4b1bddc04a3d',
       "Content-Type": "application/json",
     },
-  })
+  }).then(onResponse)
 }
 //
 export function getUserInfo() {
@@ -41,9 +37,7 @@ export function getUserInfo() {
       authorization: 'bbf4eaaa-f328-4bc0-8623-4b1bddc04a3d',
       "Content-Type": "application/json",
     }
-  }).then((res) => {
-      return res.json(); // возвращаем результат работы метода и идём в следующий then
-  });
+  }).then(onResponse);
 }
 
 
@@ -55,9 +49,7 @@ export function editProfile(dataProfile) {
       "Content-Type": "application/json; charset=UTF-8",
     },
     body: JSON.stringify(dataProfile)
-  }).then((res) => {
-    return res.json(); // возвращаем результат работы метода и идём в следующий then
-  });
+  }).then(onResponse);
 }
 
 export function updateLikes(cardId, liked) {
@@ -68,4 +60,15 @@ export function updateLikes(cardId, liked) {
       "Content-Type": "application/json; charset=UTF-8",
     }
   }).then(onResponse)
+}
+
+export function updateUserAvatar(dataUserAvatar) {
+  return fetch('https://nomoreparties.co/v1/wbf-cohort-15/users/me/avatar', {
+    method: "PATCH",
+    headers: {
+      authorization: 'bbf4eaaa-f328-4bc0-8623-4b1bddc04a3d',
+      "Content-Type": "application/json; charset=UTF-8",
+    },
+    body: JSON.stringify(dataUserAvatar)
+  }).then(onResponse);
 }
