@@ -18,6 +18,8 @@ const profileDescription = document.querySelector(
 const inputGetName = formAddElement.querySelector(".modal__input-name");
 const inputGetLink = formAddElement.querySelector(".modal__input-link");
 
+const btnSubmitElements = document.querySelectorAll('.modal__btn');
+
 export {
   modalCaption,
   picturesContainer,
@@ -36,4 +38,6 @@ export {
   picturesTemplate,
   inputGetLink,
   inputGetName,
+  btnSubmitElements,
 };
+

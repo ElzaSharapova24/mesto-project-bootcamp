@@ -4,32 +4,75 @@ import {
   openModalWindow,
   closeModalClick,
 } from "./modal";
-import {addCard, getAllCards} from "./api";
+import {addCard, editProfile, getAllCards, getProfileInfo} from "./api";
 import {createCard} from "./card";
 import {
-  btnAddModal, btnEditModal,
+  btnAddModal, btnEditModal, btnSubmitElements,
   formAddElement,
   formEditElement,
   inputDescr, inputGetLink, inputGetName,
   inputName, modalAddElement,
   modalEditElement, modalGalleryElement, picturesContainer,
   profileDescription,
-  profileName
+  profileName,
 } from "./main";
+
+
+
+function setStatusBtn({btn, text, disabled}) {
+  if (!disabled) {
+    btn.disabled = false
+  } else {
+    btn.disabled = 'disabled'
+  }
+  btn.textContent = text
+}
+
+function submitElemAdd() {
+  btnSubmitElements.forEach(function (btnSubmitElem){
+    setStatusBtn({
+      btn: btnSubmitElem,
+      text: 'Сохранение...',
+      disabled: true
+    });
+  })
+}
+
+function submitElemDel() {
+  btnSubmitElements.forEach(function (btnSubmitElem){
+    setStatusBtn({
+      btn: btnSubmitElem,
+      text: 'Сохранить',
+      disabled: false
+    });
+  })
+}
+
 
 function getEditFormValue(evt) {
   evt.preventDefault();
-
+  submitElemAdd()
+  
   const nameValue = inputName.value;
   const descrValue = inputDescr.value;
-
-  profileName.textContent = nameValue;
-  profileDescription.textContent = descrValue;
+  const profileData = {name: nameValue, about: descrValue};
+  
+  editProfile(profileData).then(dataFromServer => {
+    profileName.textContent = dataFromServer.name;
+    profileDescription.textContent = dataFromServer.about;
+  }).catch((error) => {
+    console.log(error)
+  }).finally(() => {
+    submitElemDel()
+  })
+  
   closeModalClick(evt);
 }
 
-function handleOpenForm(evt) {
+
+function handleOpenAddForm(evt) {
   evt.preventDefault();
+  submitElemAdd()
   
   const nameValue = inputGetName.value;
   const linkValue = inputGetLink.value;
@@ -42,6 +85,10 @@ function handleOpenForm(evt) {
     renderCard(c);
     closeModalClick(evt);
     formEditElement.reset();
+  }).catch((error) => {
+    console.log(error)
+  }).finally(() => {
+    submitElemDel()
   })
   closeModalClick(evt);
 }
@@ -56,12 +103,22 @@ function renderInitialCards() {
     .then(cards => {
       cards.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
       cards.forEach(renderCard);
+      // console.log(cards)
     });
+}
+
+function renderInitialProfileInfo(){
+  getProfileInfo()
+    .then(e => {
+      console.log(e);
+      profileName.textContent = e.name;
+      profileDescription.textContent = e.about
+    })
 }
 
 
 formEditElement.addEventListener("submit", getEditFormValue);
-formAddElement.addEventListener("submit", handleOpenForm);
+formAddElement.addEventListener("submit", handleOpenAddForm);
 
 btnEditModal.addEventListener("click", function () {
   formEditElement.reset();
@@ -82,10 +139,12 @@ modalGalleryElement.addEventListener("mousedown", () =>
 );
 
 renderInitialCards();
+renderInitialProfileInfo();
+
 
 export {
   getEditFormValue,
-  handleOpenForm,
+  handleOpenAddForm,
   formEditElement,
   modalGalleryElement,
   renderInitialCards,

@@ -8,7 +8,7 @@ import {deleteCard} from "./api";
 
 // добавление и отрисовка карточек
 
-function createCard({ name, link, _id }) {
+function createCard({ name, link, _id, likes}) {
   
   const pictureElement = picturesTemplate
     .querySelector(".picture")
@@ -20,6 +20,7 @@ function createCard({ name, link, _id }) {
   );
   const btnDeleteCard = pictureElement.querySelector(".modal__btb-delete");
   const btnLike = pictureElement.querySelector(".picture__card-btn");
+  const likesCounter = pictureElement.querySelector('.picture__counter');
 
   picturesCardTitle.textContent = name;
   picturesCardImg.src = link;
@@ -35,8 +36,11 @@ function createCard({ name, link, _id }) {
     modalCaption.innerHTML = name;
     openModalWindow(modalGalleryElement);
   });
-
-  btnDeleteCard.addEventListener("click", () => pictureElement.remove());
+  btnDeleteCard.addEventListener("click", () => {
+    deleteCard(_id).then(e => {
+      pictureElement.remove()
+    })
+  });
   return pictureElement;
 }
 
