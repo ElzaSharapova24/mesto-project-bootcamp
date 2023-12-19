@@ -36,7 +36,7 @@ function setEventListener(formItem, config) {
 }
 
 function checkValidity(inputItem, formItem, config) {
-  const isInputValidity = inputItem.validity.valid;
+  const isInputValidity = inputItem.checkValidity();
   const formErrorMessage = formItem.querySelector(`#${inputItem.name}-error`);
 
   if (isInputValidity) {

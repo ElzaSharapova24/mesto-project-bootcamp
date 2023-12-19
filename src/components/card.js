@@ -8,7 +8,7 @@ import {deleteCard, updateLikes} from "./api";
 
 // добавление и отрисовка карточек
 
-function createCard({ name, link, _id, likes}) {
+function createCard({ name, link, likes, owner, _id}) {
   const pictureElement = document.querySelector(".pictures-template").content.querySelector('.picture').cloneNode(true);
   const picturesCardImg = pictureElement.querySelector(".picture__card-img");
   const picturesCardTitle = pictureElement.querySelector(".picture__card-title");
@@ -17,9 +17,10 @@ function createCard({ name, link, _id, likes}) {
   let likesCounter = pictureElement.querySelector('.picture__counter');
   
   const myId = '0736c54fa6ffc6a883ecc274';
-  const userId = _id;
+  const userId = owner._id;
+  const cardId = _id;
   
-  const myLike =  likes.find(like => like._id === myId)
+  const myLike =  likes.find(like => like._id === myId);
   
   let liked = myLike !== undefined;
   
@@ -53,15 +54,19 @@ function createCard({ name, link, _id, likes}) {
     openModalWindow(modalGalleryElement);
   });
   
+  if (userId === myId) {
     btnDeleteCard.addEventListener("click", () => {
-      deleteCard(userId).then(e => {
+      deleteCard(cardId).then(e => {
         pictureElement.remove()
       }).catch((error) => {
         console.log(error)
       })
     });
-    
-  console.log(likes);
+  } else {
+    btnDeleteCard.style.display = 'none';
+  }
+  
+  
   return pictureElement;
 }
 
