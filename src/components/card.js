@@ -8,15 +8,14 @@ import {deleteCard, updateLikes} from "./api";
 
 // добавление и отрисовка карточек
 
-function createCard({ name, link, likes, owner, _id}) {
+function createCard({ name, link, likes, owner, _id}, myId) {
   const pictureElement = document.querySelector(".pictures-template").content.querySelector('.picture').cloneNode(true);
   const picturesCardImg = pictureElement.querySelector(".picture__card-img");
   const picturesCardTitle = pictureElement.querySelector(".picture__card-title");
   const btnDeleteCard = pictureElement.querySelector(".modal__btb-delete");
   const btnLike = pictureElement.querySelector(".picture__card-btn");
   let likesCounter = pictureElement.querySelector('.picture__counter');
-  
-  const myId = '0736c54fa6ffc6a883ecc274';
+
   const userId = owner._id;
   const cardId = _id;
   
@@ -38,7 +37,7 @@ function createCard({ name, link, likes, owner, _id}) {
   likesCounter.textContent = likes.length
 
   btnLike.addEventListener("click", () => {
-    updateLikes(userId, liked).then(response => {
+    updateLikes(cardId, liked).then(response => {
       likesCounter.textContent = response.likes.length
       liked = !liked;
       btnLike.classList.toggle("picture__card-btn--active");

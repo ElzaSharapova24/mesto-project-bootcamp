@@ -7,6 +7,7 @@ function openModalWindow(modal) {
 
 function closeModalWindow(modal) {
   modal.classList.remove("modal__is-opened");
+  document.removeEventListener("keydown", closeModalClick);
 }
 
 function closeModalClick(evt) {
@@ -17,7 +18,6 @@ function closeModalClick(evt) {
   ) {
     const activeModal = document.querySelector(".modal.modal__is-opened");
     closeModalWindow(activeModal);
-    document.removeEventListener("keydown", closeModalClick);
   }
 }
 

@@ -19,6 +19,7 @@ import {
 
 
 
+
 function setStatusBtn({btn, text, disabled}) {
   if (!disabled) {
     btn.disabled = false
@@ -81,12 +82,12 @@ function handleOpenAddForm(evt) {
     name: nameValue,
     link: linkValue,
   };
-  addCard(cardData).then(c => {
-    renderCard(c);
+  addCard(cardData).then(response => {
+    renderCard(response, response.owner._id);
     closeModalClick(evt);
     formEditElement.reset();
   }).catch((error) => {
-    console.log(error)
+    console.log(error);
   }).finally(() => {
     submitElemDel();
   })
@@ -107,41 +108,42 @@ function handleEditAvatarElement(evt) {
     userAvatarImg.src = userAvatar.avatar
     closeModalClick(evt);
   }).catch((error) => {
-    console.log(error)
+    console.log(error);
   }).finally(() => {
     submitElemDel();
   })
   closeModalClick(evt);
 }
 
-function renderCard(data) {
-  const newCard = createCard(data);
+function renderCard(data, myId) {
+  const newCard = createCard(data, myId);
   picturesContainer.prepend(newCard);
 }
 
-function renderInitialCards() {
+function renderInitialCards(myId) {
   getInitialCards()
     .then(cards => {
       cards.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
-      cards.forEach(renderCard);
+      cards.forEach(data => renderCard(data, myId));
     }).catch((error) => {
-    console.log(error)
+    console.log(error);
   })
 }
 
 function renderInitialUserInfo(){
   getUserInfo()
-    .then(e => {
-      profileName.textContent = e.name;
-      profileDescription.textContent = e.about
-      userAvatarImg.src = e.avatar
+    .then(response => {
+      profileName.textContent = response.name;
+      profileDescription.textContent = response.about;
+      userAvatarImg.src = response.avatar;
+      renderInitialCards(response._id);
     }).catch((error) => {
-    console.log(error)
+    console.log(error);
   })
 }
 
 
-formEditElement.addEventListener("submit", getEditFormValue);
+formEditElement.addEventListener("submit", getEditFormValue,);
 formAddElement.addEventListener("submit", handleOpenAddForm);
 formEditAvatar.addEventListener("submit", handleEditAvatarElement);
 
@@ -159,7 +161,7 @@ btnAddModal.addEventListener("click", () => {
 
 btnEditAvatar.addEventListener("click", () => {
   formEditAvatar.reset();
-  openModalWindow(modalEditAvatarEl)
+  openModalWindow(modalEditAvatarEl);
 });
 
 modalEditElement.addEventListener("mousedown", closeModalClick);
@@ -167,9 +169,9 @@ modalAddElement.addEventListener("mousedown", closeModalClick);
 modalGalleryElement.addEventListener("mousedown", () =>
   closeModalClick(modalGalleryElement)
 );
-modalEditAvatarEl.addEventListener("mousedown", closeModalClick)
 
-renderInitialCards();
+modalEditAvatarEl.addEventListener("mousedown", closeModalClick);
+
 renderInitialUserInfo();
 
 
