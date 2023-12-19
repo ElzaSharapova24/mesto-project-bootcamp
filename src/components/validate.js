@@ -21,22 +21,25 @@ enableValidationForm({
 function setEventListener(formItem, config) {
   const inputList = formItem.querySelectorAll(config.inputSelector);
   const btnSubmit = formItem.querySelector(config.submitButtonSelector);
-  disabledButton(btnSubmit, formItem.checkValidity(), config);
 
   inputList.forEach(function (inputItem) {
     inputItem.addEventListener("input", function () {
       checkValidity(inputItem, formItem, config);
       disabledButton(btnSubmit, formItem.checkValidity(), config);
     });
-
-    formItem.addEventListener("submit", function (evt) {
-      evt.preventDefault();
-    });
+  });
+  
+  formItem.addEventListener("submit", function (evt) {
+    evt.preventDefault();
+  });
+  
+  formItem.addEventListener("reset", function (evt) {
+    disabledButton(btnSubmit, false, config);
   });
 }
 
 function checkValidity(inputItem, formItem, config) {
-  const isInputValidity = inputItem.validity.valid;
+  const isInputValidity = inputItem.checkValidity();
   const formErrorMessage = formItem.querySelector(`#${inputItem.name}-error`);
 
   if (isInputValidity) {
@@ -65,6 +68,8 @@ function hideInputError(inputItem, formErrorMessage, config) {
   inputItem.classList.remove(config.inputErrorClass);
   formErrorMessage.textContent = inputItem.validationMessage;
 }
+
+
 
 export {
   enableValidationForm,

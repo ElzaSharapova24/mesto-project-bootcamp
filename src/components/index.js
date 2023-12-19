@@ -4,32 +4,76 @@ import {
   openModalWindow,
   closeModalClick,
 } from "./modal";
-import { initialCards } from "./api";
+import {addCard, editProfile, getInitialCards, getUserInfo, updateUserAvatar} from "./api";
 import {createCard} from "./card";
 import {
-  btnAddModal, btnEditModal,
-  formAddElement,
+  btnAddModal, btnEditAvatar, btnEditModal, btnSubmitElements,
+  formAddElement, formEditAvatar,
   formEditElement,
   inputDescr, inputGetLink, inputGetName,
-  inputName, modalAddElement,
-  modalEditElement, modalGalleryElement, picturesContainer,
+  inputName, modalAddElement, modalEditAvatarEl,
+  modalEditElement, modalGalleryElement, modalInputUsersAvatar, picturesContainer,
   profileDescription,
-  profileName
+  profileName, userAvatarImg,
 } from "./main";
 
-function getFormEditValue(evt) {
-  evt.preventDefault();
 
+
+
+function setStatusBtn({btn, text, disabled}) {
+  if (!disabled) {
+    btn.disabled = false
+  } else {
+    btn.disabled = 'disabled'
+  }
+  btn.textContent = text
+}
+
+function submitElemAdd() {
+  btnSubmitElements.forEach(function (btnSubmitElem){
+    setStatusBtn({
+      btn: btnSubmitElem,
+      text: 'Сохранение...',
+      disabled: true
+    });
+  })
+}
+
+function submitElemDel() {
+  btnSubmitElements.forEach(function (btnSubmitElem){
+    setStatusBtn({
+      btn: btnSubmitElem,
+      text: 'Сохранить',
+      disabled: false
+    });
+  })
+}
+
+
+function getEditFormValue(evt) {
+  evt.preventDefault();
+  submitElemAdd();
+  
   const nameValue = inputName.value;
   const descrValue = inputDescr.value;
-
-  profileName.textContent = nameValue;
-  profileDescription.textContent = descrValue;
+  const profileData = {name: nameValue, about: descrValue};
+  
+  editProfile(profileData).then(dataFromServer => {
+    profileName.textContent = dataFromServer.name;
+    profileDescription.textContent = dataFromServer.about;
+  }).catch((error) => {
+    console.log(error)
+  }).finally(() => {
+    submitElemDel();
+  })
+  
   closeModalClick(evt);
 }
 
-function handleOpenForm(evt) {
+
+function handleOpenAddForm(evt) {
   evt.preventDefault();
+  submitElemAdd();
   
   const nameValue = inputGetName.value;
   const linkValue = inputGetLink.value;
@@ -38,23 +82,70 @@ function handleOpenForm(evt) {
     name: nameValue,
     link: linkValue,
   };
-
-  renderCard(cardData);
+  addCard(cardData).then(response => {
+    renderCard(response, response.owner._id);
+    closeModalClick(evt);
+    formEditElement.reset();
+  }).catch((error) => {
+    console.log(error);
+  }).finally(() => {
+    submitElemDel();
+  })
   closeModalClick(evt);
-  formEditElement.reset();
 }
 
-function renderCard(data) {
-  const newCard = createCard(data);
+function handleEditAvatarElement(evt) {
+  evt.preventDefault();
+  submitElemAdd();
+  
+  const userAvatarValue = modalInputUsersAvatar.value
+  
+  const userAvatar = {
+    avatar:userAvatarValue
+  }
+  
+  updateUserAvatar(userAvatar).then(e => {
+    userAvatarImg.src = userAvatar.avatar
+    closeModalClick(evt);
+  }).catch((error) => {
+    console.log(error);
+  }).finally(() => {
+    submitElemDel();
+  })
+  closeModalClick(evt);
+}
+
+function renderCard(data, myId) {
+  const newCard = createCard(data, myId);
   picturesContainer.prepend(newCard);
 }
 
-function renderInitialCards() {
-  initialCards.forEach(renderCard);
+function renderInitialCards(myId) {
+  getInitialCards()
+    .then(cards => {
+      cards.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+      cards.forEach(data => renderCard(data, myId));
+    }).catch((error) => {
+    console.log(error);
+  })
 }
 
-formEditElement.addEventListener("submit", getFormEditValue);
-formAddElement.addEventListener("submit", handleOpenForm);
+function renderInitialUserInfo(){
+  getUserInfo()
+    .then(response => {
+      profileName.textContent = response.name;
+      profileDescription.textContent = response.about;
+      userAvatarImg.src = response.avatar;
+      renderInitialCards(response._id);
+    }).catch((error) => {
+    console.log(error);
+  })
+}
+
+
+formEditElement.addEventListener("submit", getEditFormValue,);
+formAddElement.addEventListener("submit", handleOpenAddForm);
+formEditAvatar.addEventListener("submit", handleEditAvatarElement);
 
 btnEditModal.addEventListener("click", function () {
   formEditElement.reset();
@@ -68,17 +159,25 @@ btnAddModal.addEventListener("click", () => {
   openModalWindow(modalAddElement);
 });
 
+btnEditAvatar.addEventListener("click", () => {
+  formEditAvatar.reset();
+  openModalWindow(modalEditAvatarEl);
+});
+
 modalEditElement.addEventListener("mousedown", closeModalClick);
 modalAddElement.addEventListener("mousedown", closeModalClick);
 modalGalleryElement.addEventListener("mousedown", () =>
   closeModalClick(modalGalleryElement)
 );
 
-renderInitialCards();
+modalEditAvatarEl.addEventListener("mousedown", closeModalClick);
+
+renderInitialUserInfo();
+
 
 export {
-  getFormEditValue,
-  handleOpenForm,
+  getEditFormValue,
+  handleOpenAddForm,
   formEditElement,
   modalGalleryElement,
   renderInitialCards,

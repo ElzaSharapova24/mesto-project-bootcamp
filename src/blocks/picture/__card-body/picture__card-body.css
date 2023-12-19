@@ -1,11 +1,12 @@
 .picture__card-body {
   padding-top: 25px;
-  padding-left: 21px;
+  padding-left: 16px;
   padding-right: 20px;
   padding-bottom: 26px;
   background-color: currentColor;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
+  min-height: 45px;
 }
 
 @media (max-width: 720px) {

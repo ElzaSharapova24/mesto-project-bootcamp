@@ -6,6 +6,7 @@ import likeActiveIcon from "../images/svg/Union.svg";
 import likeIcon from "../images/svg/Vector.svg";
 import closeIcon from "../images/svg/closeIcon.svg";
 import editIcon from "../images/svg/editButton.svg";
+import editIcons from "../images/svg/editIcon.svg";
 
 export const imgObj = [
   // меняем исходные пути на переменные
@@ -17,4 +18,5 @@ export const imgObj = [
   { name: "like", link: likeIcon },
   { name: "close", link: closeIcon },
   { name: "edit", link: editIcon },
+  { name: "editIcon", link: editIcons },
 ];
