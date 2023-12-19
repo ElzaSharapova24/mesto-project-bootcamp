@@ -2,13 +2,20 @@ import { openModalWindow } from "./modal";
 import {
   modalGalleryElement,
   modalCaption,
-  modalImage, picturesTemplate
+  modalImage,
 } from "./main";
 import {deleteCard, updateLikes} from "./api";
 
 // добавление и отрисовка карточек
 
 function createCard({ name, link, _id, likes}) {
+  const pictureElement = document.querySelector(".pictures-template").content.querySelector('.picture').cloneNode(true);
+  const picturesCardImg = pictureElement.querySelector(".picture__card-img");
+  const picturesCardTitle = pictureElement.querySelector(".picture__card-title");
+  const btnDeleteCard = pictureElement.querySelector(".modal__btb-delete");
+  const btnLike = pictureElement.querySelector(".picture__card-btn");
+  let likesCounter = pictureElement.querySelector('.picture__counter');
+  
   const myId = '0736c54fa6ffc6a883ecc274';
   const userId = _id;
   
@@ -16,23 +23,10 @@ function createCard({ name, link, _id, likes}) {
   
   let liked = myLike !== undefined;
   
-  const pictureElement = picturesTemplate
-    .querySelector(".picture")
-    .cloneNode(true);
-  
-  const picturesCardImg = pictureElement.querySelector(".picture__card-img");
-  const picturesCardTitle = pictureElement.querySelector(
-    ".picture__card-title"
-  );
-  const btnDeleteCard = pictureElement.querySelector(".modal__btb-delete");
-  const btnLike = pictureElement.querySelector(".picture__card-btn");
-  let likesCounter = pictureElement.querySelector('.picture__counter');
-
   picturesCardTitle.textContent = name;
   picturesCardImg.src = link;
   picturesCardImg.alt = name;
   
-  likesCounter.textContent = likes.length
   
   if (liked === true) {
     btnLike.classList.add("picture__card-btn--active");
@@ -40,12 +34,15 @@ function createCard({ name, link, _id, likes}) {
     btnLike.classList.remove("picture__card-btn--active");
   }
   
+  likesCounter.textContent = likes.length
 
   btnLike.addEventListener("click", () => {
     updateLikes(userId, liked).then(response => {
       likesCounter.textContent = response.likes.length
       liked = !liked;
       btnLike.classList.toggle("picture__card-btn--active");
+    }).catch((error) => {
+      console.log(error)
     })
   });
 
@@ -56,16 +53,15 @@ function createCard({ name, link, _id, likes}) {
     openModalWindow(modalGalleryElement);
   });
   
-  if (userId !== myId) {
     btnDeleteCard.addEventListener("click", () => {
       deleteCard(userId).then(e => {
         pictureElement.remove()
+      }).catch((error) => {
+        console.log(error)
       })
     });
-  } else {
-    btnDeleteCard.style.display = 'none'
-  }
-  
+    
+  console.log(likes);
   return pictureElement;
 }
 

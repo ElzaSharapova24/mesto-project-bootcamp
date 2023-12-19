@@ -4,7 +4,7 @@ import {
   openModalWindow,
   closeModalClick,
 } from "./modal";
-import {addCard, editProfile, getAllCards, getUserInfo, updateUserAvatar} from "./api";
+import {addCard, editProfile, getInitialCards, getUserInfo, updateUserAvatar} from "./api";
 import {createCard} from "./card";
 import {
   btnAddModal, btnEditAvatar, btnEditModal, btnSubmitElements,
@@ -102,6 +102,7 @@ function handleEditAvatarElement(evt) {
   const userAvatar = {
     avatar:userAvatarValue
   }
+  
   updateUserAvatar(userAvatar).then(e => {
     userAvatarImg.src = userAvatar.avatar
     closeModalClick(evt);
@@ -119,12 +120,13 @@ function renderCard(data) {
 }
 
 function renderInitialCards() {
-  getAllCards()
+  getInitialCards()
     .then(cards => {
       cards.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
       cards.forEach(renderCard);
-      console.log(cards)
-    });
+    }).catch((error) => {
+    console.log(error)
+  })
 }
 
 function renderInitialUserInfo(){
@@ -133,8 +135,9 @@ function renderInitialUserInfo(){
       profileName.textContent = e.name;
       profileDescription.textContent = e.about
       userAvatarImg.src = e.avatar
-      
-    })
+    }).catch((error) => {
+    console.log(error)
+  })
 }
 
 

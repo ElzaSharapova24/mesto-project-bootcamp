@@ -9,7 +9,6 @@ const formEditElement = document.querySelector(".modal__form-edit");
 const formAddElement = document.querySelector(".modal__form-add");
 const formEditAvatar = document.querySelector(".modal__form-edit_avatar");
 const picturesContainer = document.querySelector(".pictures__cards");
-const picturesTemplate = document.querySelector(".pictures-template").content;
 const modalImage = document.querySelector(".modal__img");
 const modalCaption = document.querySelector(".modal__caption");
 const inputName = document.querySelector(".modal__input-avatar-name");
@@ -39,7 +38,6 @@ export {
   formEditElement,
   modalGalleryElement,
   modalImage,
-  picturesTemplate,
   inputGetLink,
   inputGetName,
   btnSubmitElements,
