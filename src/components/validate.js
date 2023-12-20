@@ -4,7 +4,7 @@ function enableValidationForm(config) {
   formList.forEach(function (formItem) {
     formItem.addEventListener("reset", () => {
       formItem
-        .querySelectorAll(".modal__input-error")
+        .querySelectorAll(config.inputErrorElement)
         .forEach((e) => (e.innerText = ""));
     });
     setEventListener(formItem, config);
@@ -16,6 +16,7 @@ enableValidationForm({
   submitButtonSelector: ".modal__btn",
   inactiveButtonClass: "modal__btn-disabled",
   inputErrorClass: "modal__input_type_error",
+  inputErrorElement: ".modal__input-error",
 });
 
 function setEventListener(formItem, config) {
@@ -25,7 +26,7 @@ function setEventListener(formItem, config) {
   inputList.forEach(function (inputItem) {
     inputItem.addEventListener("input", function () {
       checkValidity(inputItem, formItem, config);
-      disabledButton(btnSubmit, formItem.checkValidity(), config);
+      toggleButtonState(btnSubmit, formItem.checkValidity(), config);
     });
   });
   
@@ -34,7 +35,7 @@ function setEventListener(formItem, config) {
   });
   
   formItem.addEventListener("reset", function (evt) {
-    disabledButton(btnSubmit, false, config);
+    toggleButtonState(btnSubmit, false, config);
   });
 }
 
@@ -49,7 +50,7 @@ function checkValidity(inputItem, formItem, config) {
   }
 }
 
-function disabledButton(btnElement, isActive, config) {
+function toggleButtonState(btnElement, isActive, config) {
   if (isActive) {
     btnElement.disabled = false;
     btnElement.classList.remove(config.inactiveButtonClass);
@@ -75,7 +76,7 @@ export {
   enableValidationForm,
   setEventListener,
   checkValidity,
-  disabledButton,
+  toggleButtonState,
   showInputError,
   hideInputError,
 };

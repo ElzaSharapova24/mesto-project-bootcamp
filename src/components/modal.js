@@ -11,12 +11,12 @@ function closeModalWindow(modal) {
 }
 
 function closeModalClick(evt) {
+  const activeModal = document.querySelector(".modal.modal__is-opened");
   if (
     evt.target === evt.currentTarget ||
     evt.target.classList.contains("modal__btn-close") ||
     evt.code === "Escape"
   ) {
-    const activeModal = document.querySelector(".modal.modal__is-opened");
     closeModalWindow(activeModal);
   }
 }

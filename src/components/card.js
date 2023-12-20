@@ -14,7 +14,7 @@ function createCard({ name, link, likes, owner, _id}, myId) {
   const picturesCardTitle = pictureElement.querySelector(".picture__card-title");
   const btnDeleteCard = pictureElement.querySelector(".modal__btb-delete");
   const btnLike = pictureElement.querySelector(".picture__card-btn");
-  let likesCounter = pictureElement.querySelector('.picture__counter');
+  const likesCounter = pictureElement.querySelector('.picture__counter');
 
   const userId = owner._id;
   const cardId = _id;
@@ -46,7 +46,7 @@ function createCard({ name, link, likes, owner, _id}, myId) {
     })
   });
 
-  picturesCardImg.addEventListener("click", function () {
+  picturesCardImg.addEventListener("pointerdown", function () {
     modalImage.src = link;
     modalImage.alt = name;
     modalCaption.innerHTML = name;
