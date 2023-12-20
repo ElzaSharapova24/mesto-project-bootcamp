@@ -15,13 +15,12 @@ const inputName = document.querySelector(".modal__input-avatar-name");
 const inputDescr = document.querySelector(".modal__input-avatar-descr");
 const profileName = document.querySelector(".profile__avatar-name");
 const profileDescription = document.querySelector(
-  ".profile__avatar-description"
-);
+  ".profile__avatar-description");
 const userAvatarImg = document.querySelector(".profile__avatar");
 const inputGetName = formAddElement.querySelector(".modal__input-name");
 const inputGetLink = formAddElement.querySelector(".modal__input-link");
 const modalInputUsersAvatar = formEditAvatar.querySelector(".modal__input-avatar");
-const btnSubmitElements = document.querySelectorAll('.modal__btn');
+const btnSubmitElement = document.querySelectorAll('.modal__btn');
 
 export {
   modalCaption,
@@ -40,9 +39,11 @@ export {
   modalImage,
   inputGetLink,
   inputGetName,
-  btnSubmitElements,
+  btnSubmitElement,
   btnEditAvatar,
   formEditAvatar,
-  modalEditAvatarEl, modalInputUsersAvatar, userAvatarImg
+  modalEditAvatarEl,
+  modalInputUsersAvatar,
+  userAvatarImg
 };
 
