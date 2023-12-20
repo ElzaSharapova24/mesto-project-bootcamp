@@ -29,30 +29,26 @@ function setStatusBtn({btn, text, disabled}) {
   btn.textContent = text
 }
 
-function submitElemAdd() {
-  btnSubmitElements.forEach(function (btnSubmitElem){
+function submitElemAdd(btnSubmitElem) {
     setStatusBtn({
       btn: btnSubmitElem,
       text: 'Сохранение...',
       disabled: true
     });
-  })
 }
 
-function submitElemDel() {
-  btnSubmitElements.forEach(function (btnSubmitElem){
+function submitElemDel(btnSubmitElem) {
     setStatusBtn({
       btn: btnSubmitElem,
       text: 'Сохранить',
       disabled: false
     });
-  })
 }
 
 
 function getEditFormValue(evt) {
   evt.preventDefault();
-  submitElemAdd();
+  submitElemAdd(evt.submitter);
   
   const nameValue = inputName.value;
   const descrValue = inputDescr.value;
@@ -61,19 +57,19 @@ function getEditFormValue(evt) {
   editProfile(profileData).then(dataFromServer => {
     profileName.textContent = dataFromServer.name;
     profileDescription.textContent = dataFromServer.about;
+    closeModalClick(modalEditElement);
   }).catch((error) => {
     console.log(error)
   }).finally(() => {
-    submitElemDel();
+    submitElemDel(evt.submitter);
   })
   
-  closeModalClick(evt);
 }
 
 
 function handleOpenAddForm(evt) {
   evt.preventDefault();
-  submitElemAdd();
+  submitElemAdd(evt.submitter);
   
   const nameValue = inputGetName.value;
   const linkValue = inputGetLink.value;
@@ -84,19 +80,18 @@ function handleOpenAddForm(evt) {
   };
   addCard(cardData).then(response => {
     renderCard(response, response.owner._id);
-    closeModalClick(evt);
+    closeModalClick(modalAddElement);
     formEditElement.reset();
   }).catch((error) => {
     console.log(error);
   }).finally(() => {
-    submitElemDel();
+    submitElemDel(evt.submitter);
   })
-  closeModalClick(evt);
 }
 
 function handleEditAvatarElement(evt) {
   evt.preventDefault();
-  submitElemAdd();
+  submitElemAdd(evt.submitter);
   
   const userAvatarValue = modalInputUsersAvatar.value
   
@@ -106,13 +101,12 @@ function handleEditAvatarElement(evt) {
   
   updateUserAvatar(userAvatar).then(e => {
     userAvatarImg.src = userAvatar.avatar
-    closeModalClick(evt);
+    closeModalClick(modalEditAvatarEl);
   }).catch((error) => {
     console.log(error);
   }).finally(() => {
-    submitElemDel();
+    submitElemDel(evt.submitter);
   })
-  closeModalClick(evt);
 }
 
 function renderCard(data, myId) {
@@ -147,27 +141,27 @@ formEditElement.addEventListener("submit", getEditFormValue,);
 formAddElement.addEventListener("submit", handleOpenAddForm);
 formEditAvatar.addEventListener("submit", handleEditAvatarElement);
 
-btnEditModal.addEventListener("click", function () {
+btnEditModal.addEventListener("pointerdown", function () {
   formEditElement.reset();
   inputName.value = profileName.innerText;
   inputDescr.value = profileDescription.innerText;
   openModalWindow(modalEditElement);
 });
 
-btnAddModal.addEventListener("click", () => {
+btnAddModal.addEventListener("pointerdown", () => {
   formAddElement.reset();
   openModalWindow(modalAddElement);
 });
 
-btnEditAvatar.addEventListener("click", () => {
+btnEditAvatar.addEventListener("pointerdown", () => {
   formEditAvatar.reset();
   openModalWindow(modalEditAvatarEl);
 });
 
 modalEditElement.addEventListener("mousedown", closeModalClick);
 modalAddElement.addEventListener("mousedown", closeModalClick);
-modalGalleryElement.addEventListener("mousedown", () =>
-  closeModalClick(modalGalleryElement)
+modalGalleryElement.addEventListener("mousedown", (evt) =>
+  closeModalClick(evt)
 );
 
 modalEditAvatarEl.addEventListener("mousedown", closeModalClick);
