@@ -7,7 +7,7 @@ import {
 import {addCard, editProfile, getInitialCards, getUserInfo, updateUserAvatar} from "./api";
 import {createCard} from "./card";
 import {
-  btnAddModal, btnEditAvatar, btnEditModal, btnSubmitElements,
+  btnAddModal, btnEditAvatar, btnEditModal,
   formAddElement, formEditAvatar,
   formEditElement,
   inputDescr, inputGetLink, inputGetName,
